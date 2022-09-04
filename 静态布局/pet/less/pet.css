@@ -1,0 +1,225 @@
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.clear::after {
+  content: '';
+  clear: both;
+  display: block;
+}
+.wrap {
+  width: 1000px;
+  margin: 0 auto;
+}
+header {
+  background-image: url(../images/宠问_02.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 200px 0;
+}
+main {
+  position: relative;
+}
+main .introduce {
+  position: relative;
+  top: -100px;
+}
+main .introduce .wrap {
+  background-color: lightpink;
+  box-sizing: border-box;
+  padding: 40px;
+}
+main .introduce .wrap h1 {
+  font-size: 44px;
+  color: white;
+}
+main .introduce .wrap p {
+  font-size: 20px;
+  color: white;
+  margin-bottom: 30px;
+}
+main .introduce .wrap span {
+  font-size: 20px;
+  color: white;
+}
+main .brand .wrap .title {
+  text-align: center;
+  font-size: 40px;
+}
+main .brand .wrap .card p {
+  font-size: 16px;
+  margin: 30px 0 40px 0;
+}
+main .brand .wrap .card .card-left {
+  width: 50%;
+  height: 100%;
+  background-image: url('../images/宠问_05.png');
+  padding: 200px 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+main .brand .wrap .card .card-right {
+  width: 50%;
+  height: 100%;
+  background-image: url('../images/宠问_06.png');
+  padding: 200px 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+main .interview {
+  position: relative;
+  top: 200px;
+}
+main .interview .wrap .title {
+  text-align: center;
+  font-size: 40px;
+}
+main .interview .wrap .card p {
+  font-size: 16px;
+  margin: 30px 0 40px 0;
+}
+main .interview .wrap .card .card-left {
+  width: 50%;
+  height: 100%;
+  background-image: url('../images/宠问_09.png');
+  padding: 200px 0;
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+main .interview .wrap .card .card-right {
+  width: 50%;
+  height: 100%;
+  background-image: url('../images/宠问_10.png');
+  padding: 200px 0;
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+main .process {
+  position: relative;
+  top: 300px;
+  background-image: url('../images/宠问_14.png');
+  padding: 50px 0;
+}
+main .process .wrap {
+  margin-top: 80px;
+}
+main .process .wrap .title {
+  text-align: center;
+  font-size: 40px;
+  color: white;
+}
+main .process .wrap .card {
+  font-size: 16px;
+  color: white;
+  margin: 30px 0 40px 0;
+}
+main .process .wrap .info {
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/宠问_13.png');
+  padding: 400px 10px;
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+main .design {
+  position: relative;
+  top: 400px;
+}
+main .design .wrap .title {
+  text-align: center;
+  font-size: 40px;
+}
+main .design .wrap .card {
+  font-size: 16px;
+  margin-top: 10px;
+}
+main .design .wrap .info {
+  margin-top: 150px;
+}
+main .design .wrap .info img {
+  float: left;
+  width: 300px;
+  height: 540px;
+}
+main .design .wrap .info img:nth-child(2) {
+  margin: 0 40px;
+}
+main .enthusiasm {
+  background-image: url('../images/宠问_26.png');
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 300px 0;
+  position: relative;
+  top: 1050px;
+}
+main .features {
+  background-color: #fd91b5;
+  position: relative;
+  top: 1150px;
+}
+main .features .wrap .title {
+  text-align: center;
+  font-size: 40px;
+}
+main .features .wrap .card {
+  font-size: 16px;
+  margin: 40px 0;
+}
+main .features .wrap .info {
+  position: relative;
+  top: 100px;
+}
+main .features .wrap .info img {
+  width: 300px;
+  height: 100%;
+  float: left;
+}
+main .features .wrap .info img:nth-child(2) {
+  width: 400px;
+  position: relative;
+  top: -100px;
+}
+main .attribute {
+  position: relative;
+  top: 1250px;
+}
+main .attribute .wrap {
+  position: relative;
+}
+main .attribute .wrap .title h1 {
+  font-size: 40px;
+  text-align: center;
+}
+main .attribute .wrap .title p {
+  font-size: 16px;
+}
+main .attribute .wrap .items {
+  width: 600px;
+  margin: 0 auto;
+  position: relative;
+  top: 50px;
+}
+main .attribute .wrap .items li {
+  width: 100px;
+  height: 80px;
+  float: left;
+  margin: 20px 20px;
+}
+main .attribute .wrap .items li div {
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/imgs.png');
+  background-position: -141px -207px;
+  background-size: 500px 500px;
+  background-repeat: no-repeat;
+}
+/*# sourceMappingURL=./pet.css.map */

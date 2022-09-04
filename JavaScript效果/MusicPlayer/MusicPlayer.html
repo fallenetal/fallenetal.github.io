@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./MusicAnimation.css">
+    <link rel="stylesheet" href="./MusicPlayer.css">
+</head>
+
+<body>
+    <div class="Music">
+        <div class="wrap">
+            <div class="content">
+                <div class="con-top">
+                    <!-- 图片 -->
+                </div>
+                <div class="con-ner">
+                    <!-- 介绍 -->
+                </div>
+                <div class="con-fot">
+                    <div class="left">
+                        <svg class="icon lt" width="40" height="40" viewBox="-5 -5 80 60">
+                            <polygon class="triangle" stroke-linejoin="round" points="0,20 40,0 40,40" />
+                        </svg>
+                        <svg class="icon rt" width="40" height="40" viewBox="-5 -5 80 60">
+                            <polygon class="triangle" stroke-linejoin="round" points="0,20 40,0 40,40" />
+                        </svg>
+                    </div>
+                    <div class="center">
+                        <svg class="icon active" width="40" height="40" viewBox="-5 -5 50 50">
+                            <polygon class="triangle" stroke-linejoin="round" points="0,0 0,40 40,20" />
+                        </svg>
+                        <div class="box icon">
+                            <svg width="40" height="40">
+                                <rect x="5" y="5" rx="2" ry="2" width="12" height="30"
+                                    style="fill:rgb(255, 255, 255);opacity:0.8" />
+                            </svg>
+                            <svg width="40" height="40" class="box-rt">
+                                <rect x="5" y="5" rx="2" ry="2" width="12" height="30"
+                                    style="fill:rgb(255, 255, 255);opacity:0.8" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <svg class="icon lt" width="40" height="40" viewBox="-5 -5 80 60">
+                            <polygon class="triangle" stroke-linejoin="round" points="0,0 0,40 40,20" />
+                        </svg>
+                        <svg class="icon rt" width="40" height="40" viewBox="-5 -5 80 60">
+                            <polygon class="triangle" stroke-linejoin="round" points="0,0 0,40 40,20" />
+                        </svg>
+                    </div>
+
+                </div>
+            </div>
+            <audio src=""></audio>
+            <label for="">
+                <input type="range" name="progress" min="0" value="0" max="100%" step="0.01">
+                <div class="jindu">
+                    <div class="mask"></div>
+                </div>
+            </label>
+        </div>
+    </div>
+</body>
+<script>
+    var arrBack = [
+        'linear-gradient(to right top, #ffc4ee, #ead1fc, #dadcff, #d5e5fb, #dceaf3)',
+        'linear-gradient(to right top, rgb(139, 208, 255), rgb(164, 218, 255), rgb(187, 227, 255), rgb(210, 237, 255), rgb(232, 246, 255))',
+        'linear-gradient(to right top, rgb(255, 175, 241), rgb(255, 181, 203), rgb(255, 200, 174), rgb(255, 225, 166), rgb(240, 248, 184))',
+    ]
+    var arrImg = ['./冰河时代.webp', './浮生记.webp', './启程.webp']
+    var arrAudio = ['./冰河时代.mp3', './浮生记.mp3', './启程.mp3']
+    var obj = [
+        {
+            singer: '邓紫棋',
+            introduce: [
+                {
+                    song: '冰河时代'
+                }
+            ]
+        },
+        {
+            singer: '海来阿木',
+            introduce: [
+                {
+                    song: '浮生记'
+                }
+            ]
+        },
+        {
+            singer: '伍珂玥',
+            introduce: [
+                {
+                    song: '启程'
+                }
+            ]
+        }
+    ]
+
+    var is = true
+    var index = 0
+
+    var conTop = document.querySelector('.con-top')
+    var conNer = document.querySelector('.con-ner')
+
+    // 初始化
+    arrImg.forEach(function (e) {
+        var nodeImg = document.createElement('img')
+        nodeImg.src = e
+        conTop.appendChild(nodeImg)
+    })
+    for (let i = 0; i < obj.length; i++) {
+        var nodeIntroduce1 = document.createElement('div')
+        nodeIntroduce1.className = 'card'
+        conNer.appendChild(nodeIntroduce1)
+
+        for (let j = 0; j < obj[i].introduce.length; j++) {
+            document.querySelectorAll('.card')[i].innerHTML = '<p>' + obj[i].singer + '</p><p>' + obj[i].introduce[j].song + '</p>'
+        }
+    }
+    document.querySelector('.Music').style.backgroundImage = arrBack[0]
+    conTop.querySelectorAll('img')[0].classList.add('active')
+    conNer.querySelectorAll('.card')[0].classList.add('active')
+    document.querySelector('audio').src = arrAudio[0]
+
+    // 动画
+    function animationPlay() {
+        setTimeout(function () {
+            document.querySelector('.Music .wrap').style.transform = 'matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)'
+        }, 300)
+    }
+
+    // 重新加载
+    function animationSwitch() {
+        document.querySelector('.Music .wrap .content .con-fot .center svg.icon').classList.remove('active')
+        document.querySelector('.Music .wrap .content .con-fot .center .box.icon').classList.add('active')
+        document.querySelector('audio').play()
+        document.querySelector('.Music .wrap .content .con-top').style.animation = 'none'
+        setTimeout(function () {
+            document.querySelector('.Music .wrap .content .con-top').style.animation = 'animation1 10s linear infinite forwards'
+        }, 1000)
+    }
+
+    function followingPiece() {
+        index++
+        document.querySelector('audio').src = arrAudio[index]
+
+        document.querySelector('.Music .wrap').style.transform = 'matrix3d(0.999625, 0, 0.0373682, 6.73682e-05, 0, 1, 0, 0, 0.0373682, 0, 0.999625, -0.000999625, 0, 0, 0, 1)'
+        animationPlay()
+
+        if (index >= arrAudio.length) {
+            index = 0
+            document.querySelector('audio').src = arrAudio[index]
+            conTop.querySelectorAll('img')[0].classList.add('active')
+            conNer.querySelectorAll('.card')[0].classList.add('active')
+        }
+
+        animationSwitch()
+
+        if (index < arrBack.length) {
+            document.querySelector('.Music').style.backgroundImage = arrBack[index]
+        } else {
+            document.querySelector('.Music').style.backgroundImage = arrBack[0]
+        }
+
+        for (let i = 0; i < document.querySelectorAll('.Music .wrap .content .con-ner .card').length; i++) {
+            if (index === i) {
+                conTop.querySelectorAll('img')[i].classList.add('active')
+                conNer.querySelectorAll('.card')[i].classList.add('active')
+                conTop.querySelectorAll('img')[i].style.animation = 'animation2 1s linear'
+            } else {
+                conTop.querySelectorAll('img')[i].classList.remove('active')
+                conNer.querySelectorAll('.card')[i].classList.remove('active')
+                conTop.querySelectorAll('img')[i].style.animation = 'none'
+
+                if (index === 3) {
+                    conTop.querySelectorAll('img')[0].style.animation = 'animation2 1s linear'
+                }
+            }
+        }
+    }
+    // 下一首
+    document.querySelector('.Music .wrap .content .con-fot .right').onclick = followingPiece
+
+    // 上一首
+    document.querySelector('.Music .wrap .content .con-fot .left').onclick = function () {
+        index--
+        document.querySelector('audio').src = arrAudio[index]
+        document.querySelector('.Music .wrap').style.transform = ' matrix3d(0.999797, 0, 0.0373682, -8.73682e-05, 0, 1, 0, 0, -0.0373682, 0, 0.999797, -0.000999797, 0, 0, 0, 1)'
+        animationPlay()
+
+        if (index == -1) {
+            index = arrAudio.length - 1
+            document.querySelector('audio').src = arrAudio[index]
+            conTop.querySelectorAll('img')[0].classList.add('active')
+            conNer.querySelectorAll('.card')[0].classList.add('active')
+            document.querySelector('.Music').style.backgroundImage = arrBack[index]
+        } else {
+            document.querySelector('.Music').style.backgroundImage = arrBack[index]
+        }
+
+        animationSwitch()
+
+        for (let i = 0; i < document.querySelectorAll('.Music .wrap .content .con-ner .card').length; i++) {
+            if (index === i) {
+                conTop.querySelectorAll('img')[i].classList.add('active')
+                conNer.querySelectorAll('.card')[i].classList.add('active')
+                conTop.querySelectorAll('img')[i].style.animation = 'animation3 1s linear'
+            } else {
+                conTop.querySelectorAll('img')[i].classList.remove('active')
+                conNer.querySelectorAll('.card')[i].classList.remove('active')
+                conTop.querySelectorAll('img')[i].style.animation = 'none'
+            }
+        }
+    }
+
+    // 暂停
+    document.querySelector('.Music .wrap .content .con-fot .center').onclick = function () {
+        document.querySelector('.Music .wrap .content .con-fot .center svg.icon').classList.toggle('active')
+        document.querySelector('.Music .wrap .content .con-fot .center .box.icon').classList.toggle('active')
+        document.querySelector('.Music .wrap').style.transform = ' matrix3d(1, 0, 0, 0, 0, 0.97996, -0.066442 ,6.6442e-05, 0, 0.066442,  0.97996, -0.00099779, 0, 0, 0, 1)'
+        animationPlay()
+        if (is) {
+            document.querySelector('audio').play()
+            document.querySelector('.Music .wrap .content .con-top').style.animation = 'animation1 10s linear infinite forwards'
+            is = false
+        } else {
+            document.querySelector('audio').pause()
+            document.querySelector('.Music .wrap .content .con-top').style.animationPlayState = 'paused'
+            is = true
+        }
+    }
+
+    // 进度条
+    document.querySelector('input[name=progress]').oninput = function () {
+        document.querySelector('.jindu .mask').style.width = this.value + '%'
+        document.querySelector('audio').currentTime = (this.value * document.querySelector('audio').duration) / 100
+    }
+    document.querySelector('audio').ontimeupdate = function () {
+        document.querySelector('.jindu .mask').style.width = this.currentTime / this.duration * 100 + '100%'
+
+        // 自动下一首
+        if (this.currentTime >= this.duration) {
+            followingPiece()
+        }
+    }
+</script>
+
+</html>

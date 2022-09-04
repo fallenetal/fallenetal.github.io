@@ -1,0 +1,28 @@
+
+模板：
+<div class="wrap">
+    <div class="thumb">
+        <div class="mask"></div>
+    </div>
+    <div class="zoon"></div>
+</div>
+
+需要引入的文件：
+
+jQuery：
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+ZoonIn.css文件
+ZoonIn.js文件
+
+
+var test = new zoomIn('.thumb', '.mask', '.zoon', {
+    multiple: 6,
+    Img: './bj3.jpg'
+})
+
+'.thumb', '.mask', '.zoon'三个都是需要传入的类名类名
+obj{
+    multiple: 2,   //放大倍数   默认2倍
+    Img: './bj3.jpg'    //图片
+}

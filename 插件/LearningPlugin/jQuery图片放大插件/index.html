@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: #f5f5f5
+        }
+
+        .bigimg {
+            width: 600px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            display: none;
+            z-index: 9999;
+            border: 10px solid #fff;
+        }
+
+        .mask {
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #000;
+            opacity: 0.5;
+            filter: Alpha(opacity=50);
+            z-index: 98;
+            transition: all 1s;
+            display: none
+        }
+
+        .bigbox {
+            width: 840px;
+            background: #fff;
+            border: 1px solid #ededed;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .bigbox>.imgbox {
+            width: 400px;
+            height: 250px;
+            float: left;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 0 10px 10px 10px;
+        }
+
+        .bigbox>.imgbox>img {
+            width: 100%;
+        }
+
+        .imgbox:hover {
+            cursor: zoom-in
+        }
+
+        .mask:hover {
+            cursor: zoom-out
+        }
+
+        .mask>img {
+            position: fixed;
+            right: 10px;
+            top: 10px;
+            width: 60px;
+        }
+
+        .mask>img:hover {
+            cursor: pointer
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bigbox">
+        <div class="imgbox">
+            <img src="./t1.jpg" class="smallimg" alt="">
+        </div>
+        <div class="imgbox">
+            <img src="./t1.jpg" class="smallimg" alt="">
+        </div>
+        <div class="imgbox">
+            <img src="./t1.jpg" class="smallimg" alt="">
+        </div>
+        <div class="imgbox">
+            <img src="./t1.jpg" class="smallimg" alt="">
+        </div>
+
+    </div>
+    <img src="" alt="" class="bigimg">
+    <div class="mask">
+        <img src="./close.png" class="smallimg" alt="">
+    </div>
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="./zoom.js"></script>
+<script>
+    $(function () {
+        /*
+         smallimg   // 小图
+         bigimg  //点击放大的图片
+         mask   //黑色遮罩
+         */
+        var obj = new zoom('mask', 'bigimg', 'smallimg');
+        obj.init();
+    })
+</script>
+
+</html>

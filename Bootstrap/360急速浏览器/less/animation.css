@@ -1,0 +1,70 @@
+@keyframes animation1 {
+    0%{
+        margin-top: 0px;
+    }
+    100%{
+        margin-top: -25px;
+    }
+}
+
+@keyframes animation2 {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(-45deg);
+    }
+}
+
+@keyframes animation3 {
+    0%{
+        opacity: .1;
+    }
+    10%{
+        opacity: .2;
+    }
+    20%{
+        opacity: .4;
+    }
+    30%{
+        opacity: .6;
+    }
+    40%{
+        opacity: .8;
+    }
+    50%{
+        opacity: 1;
+    }
+    60%{
+        opacity: .8;
+    }
+    70%{
+        opacity: .6;
+    }
+    80%{
+        opacity: .4;
+    }
+    90%{
+        opacity: .2;
+    }
+    100%{
+        opacity: .1;
+    }
+}
+
+
+body .container .swiper-wrapper .swiper-slide-one .star-left{
+    animation: animation1 5s linear infinite alternate;
+}
+
+body .container .swiper-wrapper .swiper-slide-one .star-right{
+    animation: animation1 5s linear infinite alternate;
+}
+
+body .container .swiper-wrapper .swiper-slide-one .satellite{
+    animation: animation2 30s linear infinite alternate;
+}
+
+body .container .swiper-wrapper .swiper-slide-one .star{
+    animation: animation3 4s linear infinite;
+}

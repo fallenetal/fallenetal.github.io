@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./less/minireset.css">
+    <link rel="stylesheet" href="./less/index.css">
+    <link rel="stylesheet" href="./less/animation.css">
+</head>
+
+<body>
+    <header class="head">
+        <div class="nav-bar">
+            <div class="wrap">
+                <div class="logo">
+                    <img src="./images/logo.png" alt="">
+                </div>
+                <div class="linBox">
+                    <a href="javascript:;">论坛</a>
+                    <a href="javascript:;">扩展</a>
+                    <a href="javascript:;">Mac版</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide swiper-slide-one">
+                <div class="wrap">
+                    <div class="title-box">
+                        <div class="title">
+                            <p>畅快浏览 极致体验</p>
+                            <p>全新Chrome内核浏览器，性能更强，速度更快</p>
+                        </div>
+                        <span>
+                            <a href="javascript:;">32位版本</a>
+                            <a href="javascript:;">
+                                <img src="./images/icon.png" alt="">
+                                64位版本
+                                <p>NEW</p>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+                <img class="star-left" src="./images/星球1.png" alt="">
+                <img class="star-right" src="./images/星球2.png" alt="">
+                <img class="satellite" src="./images/卫星1.png" alt="">
+            </div>
+            <div class="swiper-slide swiper-slide-two slide">
+                <div class="wrap">
+                    <div class="card">
+                        <p>极速</p>
+                        <div class="line"></div>
+                        <p>全新Chromium内核</p>
+                        <p>性能强劲，快如闪电。</p>
+                        <a href="javascript:;"></a>
+                    </div>
+                    <video autoplay="" loop="" muted="">
+                        <source src="https://s2.ssl.qhres2.com/static/dfeefadde568eab0.mp4" type="video/mp4">
+                        当前浏览器不支持 video直接播放，点击这里下载视频： <a href="myvideo.webm">下载视频</a>
+                    </video>
+                </div>
+            </div>
+            <div class="swiper-slide swiper-slide-three slide">
+                <div class="wrap">
+                    <div class="card">
+                        <p>极酷</p>
+                        <div class="line"></div>
+                        <p>暗夜炫黑模式</p>
+                        <p>定义酷，定义你。</p>
+                        <a href="javascript:;"></a>
+                    </div>
+                    <video autoplay="" loop="" muted="">
+                        <source src="https://s3.ssl.qhres2.com/static/9bebcedf292f327e.mp4" type="video/mp4">
+                        当前浏览器不支持 video直接播放，点击这里下载视频： <a href="myvideo.webm">下载视频</a>
+                    </video>
+                </div>
+            </div>
+            <div class="swiper-slide swiper-slide-four slide">
+                <div class="wrap">
+                    <div class="card">
+                        <p>极安全</p>
+                        <div class="line"></div>
+                        <p>DNS加密防劫持</p>
+                        <p>安全升级，肆意无忌。</p>
+                        <a href="javascript:;"></a>
+                    </div>
+                    <video autoplay="" loop="" muted="">
+                        <source src="https://s1.ssl.qhres2.com/static/fdf92889c539303c.mp4" type="video/mp4">
+                        当前浏览器不支持 video直接播放，点击这里下载视频： <a href="myvideo.webm">下载视频</a>
+                    </video>
+                </div>
+            </div>
+            <div class="swiper-slide swiper-slide-five slide">
+                <div class="wrap">
+                    <div class="card">
+                        <p>极视界</p>
+                        <div class="line"></div>
+                        <p>4K高清视频播放</p>
+                        <p>还原真实之美 ，尽显万物本色。</p>
+                        <a href="javascript:;"></a>
+                    </div>
+                    <video autoplay="" loop="" muted="">
+                        <source src="https://s1.ssl.qhres2.com/static/7e7f0ec4a0cc7a66.mp4" type="video/mp4">
+                        当前浏览器不支持 video直接播放，点击这里下载视频： <a href="myvideo.webm">下载视频</a>
+                    </video>
+                </div>
+                <div class="footer">
+                    <div class="wrap">
+                        <p> Copyright © 2005-2022 360.CN All Rights Reserved 360互联网安全中心 <a
+                                href="javascript:;">隐私政策</a><a href="javascript:;">京ICP证080047号[京ICP备08010314号-6]</a>
+                        </p>
+                        <span>
+                            网站举报电话：4006693600 举报邮箱：
+                            <a href="javascript:;">kefu@360.cn</a>
+                            互联网违法和不良信息举报中心：
+                            <a href="javascript:;">https://www.12377.cn</a>
+                        </span>
+                        <a href="javascript:;">
+                            <img src="https://se1.360simg.com/t01d8eda6e551cf2615.png"
+                                style="vertical-align: middle; border:none;" alt="">
+                            京公网安备 11000002000006号
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <ul class="jump"></ul>
+    </section>
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    // 需要节流
+    var index = 0
+    var is = true
+
+    // 生成
+    for (let i = 0; i < $('.swiper-slide').length; i++) {
+        $('.jump').append('<li></li>')
+    }
+
+    // 执行
+    $(window).on("mousewheel", function (e) {
+        rolling()
+        active()
+        activeSlide()
+        console.log($('.swiper-wrapper')[0].style.top);
+
+    })
+
+    // 单击mousemove()
+    $('.jump').on('mousemove', 'li', function () {
+        index = $(this).index()
+        active()
+    })
+
+    // 小圆点
+    function active() {
+        $('.swiper-wrapper').css({
+            top: -index * 100 + '%'
+        })
+        $('.jump li').eq(index).addClass('active').siblings().removeClass('active')
+        activeSlide()
+    }
+    active()
+
+    // 滑动
+    function rolling() {
+        if (is) {
+            if (event.wheelDelta === -150 && index < 4) {
+                index++
+                $('.swiper-wrapper').css({
+                    top: -index * 100 + '%'
+                })
+            }
+            if (event.wheelDelta === 150 && index > 0) {
+                index--
+                $('.swiper-wrapper').css({
+                    top: -index * 100 + '%'
+                })
+            }
+            is = false
+            setTimeout(function () {
+                is = true
+            }, 1000)
+        }
+    }
+
+    // 换页特效
+    function activeSlide() {
+        if ($('.swiper-wrapper')[0].style.top == '-100%') {
+            $('.swiper-slide-two .wrap .card').css({
+                opacity: '1',
+                transition: 'all 3s'
+            })
+        } else {
+            $('.swiper-slide-two .wrap .card').css({
+                opacity: '0',
+                transition: 'all 3s'
+            })
+        }
+        if ($('.swiper-wrapper')[0].style.top == '-200%') {
+            $('.swiper-slide-three .wrap .card').css({
+                opacity: '1',
+                transition: 'all 3s'
+            })
+        } else {
+            $('.swiper-slide-three .wrap .card').css({
+                opacity: '0',
+                transition: 'all 3s'
+            })
+        }
+        if ($('.swiper-wrapper')[0].style.top == '-300%') {
+            $('.swiper-slide-four .wrap .card').css({
+                opacity: '1',
+                transition: 'all 3s'
+            })
+        } else {
+            $('.swiper-slide-four .wrap .card').css({
+                opacity: '0',
+                transition: 'all 3s'
+            })
+        }
+        if ($('.swiper-wrapper')[0].style.top == '-400%') {
+            $('.swiper-slide-five .wrap .card').css({
+                opacity: '1',
+                transition: 'all 3s'
+            })
+        } else {
+            $('.swiper-slide-five .wrap .card').css({
+                opacity: '0',
+                transition: 'all 3s'
+            })
+        }
+    }
+
+    // 闪亮星星     面向对象
+    //大小一样  位置不同
+    function createStar(size, x, y) {
+        this.size = size
+        this.x = x
+        this.y = y
+    }
+
+    createStar.prototype.updateStar = function () {
+        this.node.style.width = this.size + 'px'
+        this.node.style.height = this.size + 'px'
+        this.node.style.position = 'absolute'
+        this.node.className = 'star'
+    }
+
+    createStar.prototype.setStar2 = function () {
+        this.node = document.createElement('div')
+        this.node.style.left = this.x + '%'
+        this.node.style.bottom = this.y + '%'
+        this.updateStar()
+        $('body .container .swiper-wrapper .swiper-slide-one').append(this.node)
+    }
+
+    createStar.prototype.setStar1 = function () {
+        this.node = document.createElement('div')
+        this.node.style.left = this.x + '%'
+        this.node.style.top = this.y + '%'
+        this.updateStar()
+        $('body .container .swiper-wrapper .swiper-slide-one').append(this.node)
+    }
+
+    function createstar() {
+        var star1 = new createStar(3, 80, 33)
+        star1.setStar1()
+        var star2 = new createStar(3, 28, 52)
+        star2.setStar1()
+        var star3 = new createStar(3, 68, 55)
+        star3.setStar1()
+        var star4 = new createStar(3, 25, 57)
+        star4.setStar1()
+        var star5 = new createStar(3, 67, 39)
+        star5.setStar1()
+
+        var star6 = new createStar(3, 32, 10)
+        star6.setStar2()
+        var star7 = new createStar(3, 51, 17)
+        star7.setStar2()
+        var star8 = new createStar(3, 46, 20)
+        star8.setStar2()
+        var star9 = new createStar(3, 30, 26)
+        star9.setStar2()
+    }
+    createstar()
+</script>
+
+</html>

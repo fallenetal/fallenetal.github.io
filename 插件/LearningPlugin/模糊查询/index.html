@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <div style="width: 300px;">
+            <h3>点击以下输入查看效果</h3>
+            <div id="search" placeholder="请搜索" name="seaarchSelect"></div>
+        </div>
+    </div>
+</body>
+<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="./index.js"></script>
+<script>
+    // 第一个值是元素名，第二个是一个模糊搜索用的数组，它还有第三个参数是个回调函数，这个是一个选填项目 这个回调函数会在触发input事件被执行 所以这个回调你想写异步搜索也许有用 
+    const search = new searchSelect('#search', [], function () {
+        console.log('这里可以进行异步请求')
+    })
+    search.search(true)
+    setTimeout(() => {
+        // update方法,用于更新下拉列表的数据
+        search.update([{ id: 1, value: 'a许嵩' }, { id: 2, value: 'b周杰伦' }, { id: 3, value: 'c林俊杰' }, { id: 4, value: 'd白雪皑皑' }, { id: 5, value: 'e想入非非' }, { id: 6, value: 'f得意洋洋' }, { id: 7, value: 'g怒气冲冲' }, { id: 8, value: 'h生机勃勃' }, { id: 9, value: 'i议论纷纷' }, { id: 10, value: 'j大名鼎鼎' }, { id: 11, value: 'k目光炯炯' }, { id: 12, value: 'l波光粼粼' }, { id: 13, value: 'm文质彬彬' }, { id: 14, value: 'n气喘吁吁' }, { id: 15, value: 'o言之凿凿' }, { id: 16, value: 'p人才济济' }, { id: 17, value: 'q热气腾腾' }, { id: 18, value: 'r风尘仆仆' }, { id: 20, value: 's白发苍苍' }, { id: 21, value: 't含情脉脉' }, { id: 22, value: 'u饥肠辘辘' }, { id: 23, value: 'v兴致勃勃' }, { id: 24, value: 'w微波粼粼' }, { id: 25, value: 's野心勃勃' }, { id: 26, value: 'y仪表堂堂' }, { id: 27, value: 'z衣冠楚楚' }])
+        /* assignment方法,你也许有类似编辑页需要直接给搜索框赋值的操作，可以这样做
+            seaarch.assignment({id:3,value:'苏格拉没有底'})
+            会帮你选中下拉框中对应的值，没有就帮你加上且自动选中
+            你也可以直接传个id
+            search.assignment(1)
+            这样做会帮你选中对应id的下拉框但是无法实现找不到就自动添加 */
+        search.assignment(1)
+    }, 1500)
+    setTimeout(() => {
+        // search方法,一般配合回调函数用及update方法做异步请求用，传入true会一直显示搜索中的字样,如果关掉它可以传入false，调用update也一样会清空搜索状态 search.search(true) disabled方法，实现disabled效果，传入true开启传入false关闭 
+        // disabled方法 true启动false关闭
+        search.disabled(true)
+        setTimeout(() => {
+            // seaarch.disabled(true) empty方法，帮你清空所有内容
+            search.disabled(false)
+            // 清空数据
+            // search.empty() assignment方法,你也许有类似编辑页需要直接给搜索框赋值的操作，可以这样做会帮你选中下拉框中对应的值，没有就帮你加上且自动选中 你也可以直接传个id search.assignment(1) 这样做会帮你选中对应id的下拉框但是无法实现找不到就自动添加 大清都亡了所以抛弃ie
+            search.empty()
+        }, 2000)
+    }, 10000)
+</script>
+
+</html>

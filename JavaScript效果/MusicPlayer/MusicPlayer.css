@@ -1,0 +1,206 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+.Music {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.Music .wrap {
+    width: 400px;
+    height: 500px;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    box-shadow: inset 0px -200px 180px -100px rgb(255 255 255 / 30%), 0px 12px 20px -20px rgb(0 0 0 / 8%);
+    transform-style: preserve-3d;
+    transition: all 1s;
+    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+
+}
+
+.Music .wrap .content {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 40px 30px 8px;
+}
+
+.Music .wrap .content .con-top {
+    width: 230px;
+    height: 230px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.Music .wrap .content .con-top img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: all .5s;
+}
+
+.Music .wrap .content .con-top .active {
+    opacity: 1;
+    transition: all .3s;
+}
+
+.Music .wrap .content .con-ner {
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    position: relative;
+    margin: 20px 0;
+}
+
+.Music .wrap .content .con-ner .card.active {
+    transform: scale(1);
+    transition: all .3s;
+}
+
+.Music .wrap .content .con-ner .card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale(0);
+    transition: all .3s;
+}
+
+.Music .wrap .content .con-ner .card p {
+    color: #fff;
+    letter-spacing: 3px;
+}
+
+.Music .wrap .content .con-ner .card p:nth-of-type(1) {
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.Music .wrap .content .con-ner .card p:nth-of-type(2) {
+    font-weight: 100;
+    color: #ffffff;
+    opacity: 0.8;
+    font-size: 19px;
+    letter-spacing: 10px;
+}
+
+.Music .wrap .content .con-fot {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Music .wrap .content .con-fot .left {
+    position: relative;
+}
+
+.Music .wrap .content .con-fot .left .icon.lt {
+    position: absolute;
+    left: 15px;
+}
+
+.Music .wrap .content .con-fot .center {
+    position: relative;
+}
+
+.Music .wrap .content .con-fot .center .icon {
+    opacity: 0;
+    transition: all .5s;
+}
+
+.Music .wrap .content .con-fot .center .icon.active {
+    opacity: 1;
+    transition: all .5s;
+}
+
+.Music .wrap .content .con-fot .center .box {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    transition: all .5s;
+}
+
+.Music .wrap .content .con-fot .center .box .box-rt {
+    position: absolute;
+    left: 15px;
+}
+
+.Music .wrap .content .con-fot .right {
+    position: relative;
+}
+
+.Music .wrap .content .con-fot .right .icon.lt {
+    position: absolute;
+    left: 15px;
+}
+
+.triangle {
+    fill: #fff;
+    stroke: #fff;
+    stroke-width: 5;
+}
+
+
+audio {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    margin-left: -150px;
+}
+
+label {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    margin-left: -150px;
+    height: 8px;
+    display: block;
+    overflow: hidden;
+}
+
+input {
+    width: 300px;
+    height: 100%;
+    opacity: 0;
+    display: block;
+    position: relative;
+    z-index: 2;
+}
+
+.jindu {
+    width: 300px;
+    height: 100%;
+    background-color: rgba(255, 255, 255, .3);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    border-radius: 50px;
+}
+
+.jindu .mask {
+    width: 0%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50px 0px 0px 50px;
+}

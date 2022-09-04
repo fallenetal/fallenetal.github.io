@@ -1,0 +1,121 @@
+@media screen and (min-width:1200px) {
+    .container {
+        max-width: 1170px;
+    }
+}
+
+@media screen and (max-width:992px) {
+    .container {
+        max-width: 720px;
+    }
+
+    body .site-section .container .x-flex .col-lg-4 {
+        width: 100%;
+    }
+
+    body .light-section .container .x-flex .col-md-6 {
+        width: 45%;
+    }
+
+    body .light-section .container .x-flex .col-md-5 {
+        width: 40%;
+    }
+
+    body .info-section .container .x-flex .col-lg-4 {
+        width: 100%;
+        margin-bottom: 25px;
+    }
+
+    body .swiper-section .container .x-flex.x-title .col-md-12.x-text-center {
+        text-align: center;
+        width: 100%;
+    }
+
+    body .swiper-section .container .x-flex.x-content .col-md-8 {
+        width: 100%;
+        height: auto;
+    }
+
+
+    body .swiper-section .container .x-flex.x-md .row .col-lg-3 {
+        width: 100%;
+    }
+
+    body .footer .container .x-flex.x-con-top .col-lg-4.x-card-left {
+        width: 100%;
+    }
+
+    body .footer .container .x-flex.x-con-top .col-lg-8.x-card-right .x-flex {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    body .footer .container .x-flex.x-con-top .col-lg-8.x-card-right {
+        width: 100%;
+    }
+
+    body .footer .container .x-flex.x-con-top .col-lg-8.x-card-right .x-flex .col-lg-4 {
+        width: 100%;
+    }
+
+    body .footer .container .x-flex.x-con-fot .col-md-12{
+        width: 100%;
+    }
+
+    body .head .fx-con .content .con-right {
+        display: none;
+    }
+
+    body .head .fx-con1 span.btn {
+        display: block;
+    }
+
+    body .head .fx-con1 .fx-bar .nav-bar {
+        display: none;
+    }
+
+    body .head-bj .container .x-flex .x-img img {
+        width: 100%;
+        height: auto;
+        position: relative;
+        left: 0;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .container {
+        max-width: 540px;
+    }
+
+    body .head-bj .container .x-flex .x-card .x-box h1 {
+        width: 100%;
+    }
+
+    body .head-bj .container .x-flex .x-card .x-box p {
+        margin-bottom: 40px;
+    }
+
+    body .light-section .container .x-flex .col-md-6 {
+        width: 100%;
+        margin-bottom: 45px;
+    }
+
+    body .light-section .container .x-flex .col-md-5 {
+        width: 100%;
+        margin: 0;
+    }
+
+    body .pricing-section .x-flex .col-md-4 {
+        width: 100%;
+    }
+
+    body .pricing-section .x-flex .col-md-4 .pricing a {
+        margin-bottom: 16px;
+    }
+}
+
+@media screen and (max-width:576px) {
+    .container {
+        max-width: 85%;
+    }
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh" style="font-size: calc(100vw / 375)">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./ZoomIn.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="thumb">
+            <div class="mask"></div>
+        </div>
+        <div class="zoon"></div>
+    </div>
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="./ZoomIn.js"></script>
+<script>
+    var test = new zoomIn('.thumb', '.mask', '.zoon', {
+        multiple: 6,
+        Img: './bj3.jpg'
+    })
+</script>
+
+</html>

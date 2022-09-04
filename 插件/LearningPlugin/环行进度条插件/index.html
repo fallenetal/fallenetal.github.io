@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style type="text/css">
+        body {
+            background-color: #212121
+        }
+
+        @font-face {
+            font-family: clock1;
+            src: url(font/290-CAI978.ttf);
+        }
+
+        @font-face {
+            font-family: clock2;
+            src: url(font/293-CAI978.ttf);
+        }
+
+        @font-face {
+            font-family: clock3;
+            src: url(font/300-CAI978.ttf);
+        }
+
+        #bg {
+            width: 800px;
+            height: 900px;
+            margin: 0px auto;
+            padding-top: 30px;
+            overflow: hidden;
+        }
+
+        .d {
+            margin: 20px auto;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        img {
+            width: 400px;
+            height: auto;
+            background-image: url(img/timg.jpg);
+            background-size: 100% 100%;
+            margin: 0 auto;
+            border-radius: 100px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="bg">
+
+        <div id="imgdiv0" class="d">
+            <img id="img0" src="../jQuery图片放大插件/t1.jpg" />
+        </div>
+
+        <div id="button" class="d">
+            <input type="button" id="update" class="btn" value="点击查看效果" />
+        </div>
+
+        </form>
+
+</body>
+<!--
+    r          环形外圆半径
+
+    ti         数值大小，如进度为50%则ti为50
+
+    count           总数分割份数，默认为100
+
+    offset          环形厚度
+
+    fontsize        字体大小
+
+    fontfamily      字体名称 -->
+<script src="./shadowring.js"></script>
+<script type="text/javascript">
+    // 对相应的img元素应用ShadowRing函数，可用于JQuery.ajax上传图片文件时xhr.upload的"progress"事件的回调函数
+    $(function () {
+        $("#update").click(sc);
+    })
+
+    function sc() {
+
+        for (let i = 1; i <= 100; i++) {
+            setTimeout(`shadow(${i})`, i * 50);
+        }
+    }
+
+    function shadow(val) {
+        $("img").each((i, x) => {
+            if ($(x)[0].offsetHeight > 0) {
+                $(x).ShadowRing({
+                    r: 350,
+                    ti: val,
+                    count: 100,
+                    offset: 10,
+                    fontsize: 50,
+                    fontfamily: "clock2"
+                })
+            }
+        });
+    }
+</script>
+
+</html>
