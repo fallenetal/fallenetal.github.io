@@ -27,7 +27,7 @@ zoomIn.prototype.move = function () {
     var _mask = this.mask
     var _zoon = this.zoon
 
-    this.thumb.mousemove(function () {
+    this.thumb.mousemove(function (event) {
         var maskX = event.offsetX - _mask.width() / 2
         var maskY = event.offsetY - _mask.height() / 2
 

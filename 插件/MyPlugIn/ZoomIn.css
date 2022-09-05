@@ -28,7 +28,7 @@ body {
 }
 
 .wrap .thumb .mask {
-    width: 100px;
+    width: 200px;
     height: 100px;
     background-color: rgba(129, 247, 255, 0.54);
     position: absolute;
@@ -40,8 +40,7 @@ body {
 
 .wrap .zoon {
     width: 800px;
-    height: 400px;
+    height: 378px;
     opacity: 0;
-    transition: all .2s;
     box-shadow: 0 0 30px 10px #75517d;
 }
