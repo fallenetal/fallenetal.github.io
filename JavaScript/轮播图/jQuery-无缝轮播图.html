@@ -121,17 +121,20 @@
 
     $('ul.items').find('li').eq(0).clone().appendTo('.items')
 
+    function update(index) {
+        $('.jump').find('li').eq(index).addClass('active').siblings().removeClass('active')
+    }
+
     $('.jump').on('click', 'li', function () {
-        $('.jump').find('li').eq($(this).index()).addClass('active').siblings().removeClass('active')
+        update($(this).index())
+        console.log($(this).index());
         $('.items').css({
             left: -$(this).index() * 100 + '%',
             transition: 'all .2s'
         })
     })
 
-    function update(index) {
-        $('.jump').find('li').eq(index).addClass('active').siblings().removeClass('active')
-    }
+
 
     //右
     function showNext() {
@@ -157,8 +160,9 @@
                 is = true
             }, 200)
         }
+        console.log(index);
     }
-   
+
     $('.btn').find('button').eq(1).click(function () {
         showNext()
     })
@@ -197,9 +201,7 @@
 
     var timer
     function time() {
-        timer = setInterval(function () {
-            showNext()
-        }, 1000)
+        timer = setInterval(showNext, 3000)
     }
     time()
 

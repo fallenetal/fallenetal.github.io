@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .main {
+            width: 400px;
+            height: 650px;
+            margin: 0 auto;
+            overflow: hidden;
+            /* transform: translateY(30px); */
+            position: relative;
+            background-image: url(./bg.jpg);
+            background-position: center;
+            background-size: cover;
+        }
+
+        .main .start {
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            background-color: #fff;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .end {
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            background-color: rgb(64, 64, 64);
+            color: rgb(255, 255, 255);
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            display: none;
+        }
+
+        .main .aircraft {
+            pointer-events: none;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+        }
+
+        .main .add {
+            background-color: rgb(139, 180, 247);
+            margin: 10px 0;
+            border-radius: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="start">开始</div>
+    </div>
+    <div class="end">重新开始</div>
+</body>
+<script>
+    var mainEl = document.querySelector('.main')
+    var startEl = document.querySelector('.start')
+    var endEl = document.querySelector('.end')
+
+    // 敌机
+    var enemyarry = []
+
+    // 子弹
+    var bulletarry = []
+
+    function getRandom(m, n) {
+        return Math.floor(Math.random() * (n - m) + m)
+    }
+
+    // 开始
+    startEl.onclick = function () {
+        this.style.display = 'none'
+
+        // 敌方飞机
+        function Enemy(img, x, y, speed) {
+            this.img = img
+            this.x = x
+            this.y = y
+            this.speed = speed
+
+            this.init()
+        }
+        Enemy.prototype.init = function () {
+            this.node = document.createElement('img')
+            this.node.src = this.img
+            this.node.style.position = 'absolute'
+            this.node.style.left = this.x + 'px'
+            this.node.style.top = this.y + 'px'
+            this.node.classList.add('enemy')
+            mainEl.appendChild(this.node)
+        }
+        Enemy.prototype.move = function () {
+            this.node.style.top = parseInt(this.node.style.top) + this.speed + 'px'
+        }
+
+        function getEnemy() {
+            let newEnemy = new Enemy('./v.png', getRandom(0, 360), -getRandom(0, 40), getRandom(0, 10) + 10)
+            enemyarry.push(newEnemy)
+        }
+        setInterval(() => {
+            getEnemy()
+        }, 1000)
+
+        function enemyMove() {
+            for (let i = 0; i < enemyarry.length; i++) {
+                enemyarry[i].move()
+                if (parseInt(enemyarry[i].node.style.top) > 650) {
+                    // 敌方飞机超出页面移除
+                    mainEl.removeChild(enemyarry[i].node)
+                    console.log(i);
+                    enemyarry.splice(i, 1)
+                }
+            }
+        }
+        setInterval(enemyMove, 50)
+
+        // 背景移动
+        function background() {
+            let y = 0
+            setInterval(() => {
+                y += 1
+                mainEl.style.backgroundPosition = `0px ${y}px`
+                if (y === 650) {
+                    y = 0
+                }
+            }, 10)
+        }
+        background()
+
+        // 我方飞机
+        function Aircraft(img) {
+            this.img = img
+
+            this.init()
+        }
+
+        Aircraft.prototype.init = function () {
+            this.node = document.createElement('img')
+            this.node.src = this.img
+            this.node.style.position = 'absolute'
+            this.node.classList.add('aircraft')
+            mainEl.appendChild(this.node)
+        }
+
+        Aircraft.prototype.move = function () {
+            setInterval(() => {
+                mainEl.onmousemove = () => {
+
+                    let nodeW = this.node.offsetWidth
+                    let nodeH = this.node.offsetHeight
+
+                    let nodeX = event.offsetX - (nodeW / 2)
+                    let nodeY = event.offsetY - (nodeH / 2)
+
+                    if (nodeX < 0) {
+                        nodeX = 0
+                    }
+                    if (nodeX > mainEl.offsetWidth - nodeW) {
+                        nodeX = mainEl.offsetWidth - nodeW
+                    }
+                    if (nodeY < 0) {
+                        nodeY = 0
+                    }
+                    if (nodeY > mainEl.offsetHeight - nodeH) {
+                        nodeY = mainEl.offsetHeight - nodeH
+                    }
+
+                    this.node.style.left = nodeX + 'px'
+                    this.node.style.top = nodeY + 'px'
+
+                    // 创建子弹
+                    getBullet(nodeX, nodeY)
+
+                    for (let i = 0; i < enemyarry.length; i++) {
+                        //循环敌方飞机坐标 
+                        let enTop = parseInt(enemyarry[i].node.style.top)
+                        let enLeft = parseInt(enemyarry[i].node.style.left)
+                        // 死亡 50 60是我方飞机的宽高
+                        if (enLeft >= nodeX && enLeft <= nodeX + 50 && enTop >= nodeY && enTop <= nodeY + 60) {
+                            mainEl.remove()
+                            endEl.style.display = 'block'
+                        }
+                    }
+                }
+            }, 50)
+        }
+        let plan = new Aircraft('./planes.png')
+        plan.move()
+
+        // 子弹
+        function getBullet(x, y) {
+            let newbullet = new Bullet(10, 10, x + 21, y - 40, 10)
+            bulletarry.push(newbullet)
+        }
+
+        function Bullet(sizeX, sizeY, x, y, speed) {
+            this.sizeX = sizeX
+            this.sizeY = sizeY
+            this.x = x
+            this.y = y
+            this.speed = speed
+
+            this.init()
+        }
+        Bullet.prototype.init = function () {
+            this.node = document.createElement('div')
+            this.node.style.position = 'absolute'
+
+            this.node.style.width = this.sizeX + 'px'
+            this.node.style.height = this.sizeY + 'px'
+
+            this.node.style.left = this.x + 'px'
+            this.node.style.top = this.y + 'px'
+
+            this.node.classList.add('add')
+
+            mainEl.appendChild(this.node)
+        }
+
+        Bullet.prototype.move = function () {
+            this.node.style.top = parseInt(this.node.style.top) - this.speed + "px"
+        }
+
+        function bulletMove() {
+            for (let i = 0; i < bulletarry.length; i++) {
+                bulletarry[i].move()
+                if (parseInt(bulletarry[i].node.style.top) < -650) {
+                    // 子弹超出页面移除
+                    mainEl.removeChild(bulletarry[i].node)
+                    bulletarry.splice(i, 1)
+                }
+            }
+        }
+        setInterval(bulletMove, 10)
+
+
+        // 碰撞
+        function crash() {
+            for (let i = 0; i < bulletarry.length; i++) {
+                for (let j = 0; j < enemyarry.length; j++) {
+                    let blTop = parseInt(bulletarry[i].node.style.top)
+                    let blLeft = parseInt(bulletarry[i].node.style.left)
+                    let enTop = parseInt(enemyarry[j].node.style.top)
+                    let enLeft = parseInt(enemyarry[j].node.style.left)
+                    if (blTop >= enTop && blTop <= enTop + 30 && blLeft >= enLeft && blLeft <= enLeft + 40) {
+                        //判定生效移出敌方飞机和子弹
+                        mainEl.removeChild(bulletarry[i].node)
+                        bulletarry.splice(i, 1)
+                        mainEl.removeChild(enemyarry[j].node)
+                        enemyarry.splice(j, 1)
+                    }
+                }
+            }
+        }
+        setInterval(crash, 50)
+    }
+    // 重新加载
+    endEl.onclick = function () {
+        location = location
+    }
+</script>
+
+</html>
