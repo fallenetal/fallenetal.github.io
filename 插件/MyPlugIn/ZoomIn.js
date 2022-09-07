@@ -1,4 +1,4 @@
-function zoomIn(thumb, mask, zoon, obj) {
+function ZoomIn(thumb, mask, zoon, obj) {
     this.thumb = $(thumb)
     this.mask = $(mask)
     this.zoon = $(zoon)
@@ -13,7 +13,7 @@ function zoomIn(thumb, mask, zoon, obj) {
     this.move()
 }
 
-zoomIn.prototype.move = function () {
+ZoomIn.prototype.move = function () {
     this.mask.css({
         width: this.thumb.width() / this.multiple,
         height: this.thumb.height() / this.multiple,

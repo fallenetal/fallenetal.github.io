@@ -6,90 +6,131 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./minireset.css">
+    <link rel="stylesheet" href="./index/minireset.css">
+    <link rel="stylesheet" href="./index/index.css">
     <style>
-        .container {
-            width: 100%;
-            height: 100vh;
-            background-image: linear-gradient(to right top, rgb(139, 208, 255), rgb(164, 218, 255), rgb(187, 227, 255), rgb(210, 237, 255), rgb(232, 246, 255));
-            padding: 50px 0;
-        }
+        @media (max-width: 1200px) {
 
-        .container .wrap {
-            width: 80vw;
-            margin: 0 auto;
-        }
+            body .head {
+                padding: 12rem 0;
+            }
 
-        .container .wrap ul.item {
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-        }
+            body .head .wrap .logo {
+                width: 25rem;
+                height: 25rem;
+            }
 
-        .container .wrap ul.item li {
-            width: 26vw;
-            height: 5vw;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            align-items: center;
-            font-size: 3.5rem;
-            margin: 30px 0;
-        }
+            body .main .section {
+                margin: 12rem 0;
+            }
 
-        .container .wrap ul.item li a {
-            display: inline-block;
-            padding: 0px 10px 10px;
-            color: rgb(155, 119, 239);
-        }
+            body .main .section .wrap h3 {
+                margin: 7rem 0;
+                font-size: 4.5rem;
+            }
 
-        @media screen and (max-width:992px) {
-            .container .wrap ul.item li{
-                width: 100%;
-                height: auto;
+            body .main .section .wrap ul.item li {
+                margin: 1rem;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
+    <header class="head">
         <div class="wrap">
-            <ul class="item">
-                <li>
-                    <a href="./3D&2D效果/奇奇怪怪的效果/加载动画.html">3D&2D-01</a>
-                    <a href="./3D&2D效果/iHover/dome01.html">3D&2D-02</a>
-                </li>
-                <li>
-                    <a href="./插件/MyPlugIn/ZoomIn.html">我的放大境插件</a>
-                    <!-- <a href="./插件/LearningPlugin/jQuery图片放大插件/index.html">jQuery图片放大插件</a>
-                    <a href="./插件/LearningPlugin/弹出层插件/index.html">弹出层插件</a>
-                    <a href="./插件/LearningPlugin/拖拽排序/index.html">拖拽排序</a>
-                    <a href="./插件/LearningPlugin/模糊查询/index.html">模糊查询</a>
-                    <a href="./插件/LearningPlugin/环行进度条插件/index.html">环行进度条插件</a> -->
-                </li>
-                <li>
-                    <a href="./静态布局/Aesthetic/Aesthetic.html">整形医院</a>
-                    <a href="./静态布局/dress/dress.html">服装</a>
-                    <a href="./静态布局/kiddy/kiddy.html">儿童中心</a>
-                    <a href="./静态布局/pet/pet.html">宠问</a>
-                </li>
-                <li>
-                    <a href="./轮播图/jQuery-无缝轮播图.html">无缝轮播图</a>
-                </li>
-                <li>
-                    <a href="./Bootstrap/360急速浏览器/index.html">360急速浏览器</a>
-                    <a href="./Bootstrap/儿童中心/index.html">Bootstrap-儿童中心</a>
-                    <a href="./Bootstrap/整形医院/index.html">Bootstrap=整形医院</a>
-                </li>
-                <li>
-                    <a href="./JavaScript效果/MusicPlayer/MusicPlayer.html">音乐播放器</a>
-                </li>
-            </ul>
+            <div class="logo">
+                <img class="logo_img" src="./index/images/icon.png" alt="">
+            </div>
         </div>
-    </div>
+    </header>
+    <main class="main">
+        <section class="section section-one">
+            <div class="wrap">
+                <h3>HTML CSS</h3>
+                <ul class="item">
+                    <li>
+                        <a href="./静态布局/360急速浏览器/index.html">
+                            <img src="./index/images/360.png" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./静态布局/Aesthetic/Aesthetic.html">
+                            <img src="./index/images/整形医院.png" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./静态布局/dress/dress.html">
+                            <img src="./index/images/服装.png" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./静态布局/kiddy/kiddy.html">
+                            <img src="./index/images/儿童中心.png" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./静态布局/pet/pet.html">
+                            <img src="./index/images/宠问.png" alt="">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="section section-two">
+            <div class="wrap">
+                <h3>JavaScript</h3>
+                <ul class="item">
+                    <li>lis 1</li>
+                    <li>lis 2</li>
+                    <li>lis 3</li>
+                    <li>lis 4</li>
+                    <li>lis 5</li>
+                    <li>lis 6</li>
+                </ul>
+            </div>
+        </section>
+        <section class="section section-three">
+            <div class="wrap">
+                <h3>Bootstrap</h3>
+                <ul class="item">
+                    <li>lis 1</li>
+                    <li>lis 2</li>
+                    <li>lis 3</li>
+                    <li>lis 4</li>
+                    <li>lis 5</li>
+                    <li>lis 6</li>
+                </ul>
+            </div>
+        </section>
+        <section class="section section-four">
+            <div class="wrap">
+                <h3>HTML5 CSS3</h3>
+                <ul class="item">
+                    <li>lis 1</li>
+                    <li>lis 2</li>
+                    <li>lis 3</li>
+                    <li>lis 4</li>
+                    <li>lis 5</li>
+                    <li>lis 6</li>
+                </ul>
+            </div>
+        </section>
+        <section class="section section-five">
+            <div class="wrap">
+                <h3>Vue</h3>
+                <ul class="item">
+                    <li>lis 1</li>
+                    <li>lis 2</li>
+                    <li>lis 3</li>
+                    <li>lis 4</li>
+                    <li>lis 5</li>
+                    <li>lis 6</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
 </body>
 
 </html>
