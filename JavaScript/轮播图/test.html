@@ -1,0 +1,182 @@
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul,
+    li {
+        list-style: none;
+    }
+
+    .container {
+        width: 1226px;
+        height: 460px;
+        overflow: hidden;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    img {
+        width: 1226px;
+        height: 460px;
+        display: block;
+    }
+
+    .loop {
+        /* width: 4904px; */
+        position: relative;
+    }
+
+    .list {
+        float: left;
+    }
+
+    .left,
+    .right {
+        width: 40px;
+        height: 60px;
+        background-color: rgba(24, 3, 3, 0.5);
+        position: absolute;
+        top: 50%;
+        margin-top: -20px;
+    }
+
+    .left {
+        left: 0px;
+    }
+
+    .right {
+        right: 0;
+    }
+
+    .pagenation {
+        position: absolute;
+        bottom: 20px;
+        right: 50px;
+    }
+
+    .pagenation li {
+        float: left;
+        margin: 0 10px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: rgb(25, 27, 25);
+    }
+
+    .pagenation .current {
+        background-color: rgb(202, 197, 197);
+    }
+</style>
+
+<div class="container">
+    <div class="loop">
+        <div class="list">
+            <img src="../2022.1.5日/img/虎图1.jpg" alt="">
+        </div>
+        <div class="list">
+            <img src="../2022.1.5日/img/虎图2.jpg" alt="">
+        </div>
+        <div class="list">
+            <img src="../2022.1.5日/img/虎图3.jpg" alt="">
+        </div>
+        <div class="list">
+            <img src="../2022.1.5日/img/虎图4.jpg" alt="">
+        </div>
+
+    </div>
+
+    <div class="left"></div>
+    <div class="right"></div>
+    <div class="pagenation">
+        <ul>
+
+        </ul>
+    </div>
+</div>
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.js"></script>
+<script>
+    function init() {
+        // 克隆第一张图片
+        // $('.loop').append($($('.loop').children()[0]).clone) // 克隆方法1
+        $('.list').first().clone().appendTo($('.loop')) // 方法2
+
+        // 获取单一图片的宽度 width()是一个方法可以直接获取宽度不需要带px
+        let wd = $('.container').width() // 方法1
+        //  let wd = parseInt($('.container').css('width'))//方法2
+
+        // 获取所有图片的个数
+        let len = $('.loop').children().length
+        // 设置存放图片容器的宽度
+        $('.loop').css({
+            width: wd * len
+        })
+
+        // 动态生成分页器
+        for (let i = 0; i < len - 1; i++) {
+            $('.pagenation ul').append('<li></li>')
+        }
+
+        // 设置第一个分页器按钮高亮
+        $('.pagenation li:first').addClass('current')
+
+    }
+
+
+    init(); //函数调用
+
+    let index = 0; // 存储下标
+    let count = $('.list').length //获取图片的长度
+
+    function rightShow() {
+        index++
+        if (index > count - 1) {
+            $('.loop').css({
+                marginLeft: 0
+            })
+            index = 1 // 把 index 赋值为1 
+        }
+
+        // 停止动画 stop
+        $('.loop').stop(true, true).animate({
+            // 清空动画队列 ，立即停止当前动画并到达终点状态，
+            marginLeft: -1226 * index
+        }, 500)
+        $('.pagenation li').eq(index > count - 2 ? 0 : index).addClass('current').siblings().removeClass('current')
+    }
+
+    $('.right').click(function () {
+        rightShow()
+    })
+
+    // 左边按钮
+    $('.left').click(function () {
+        index--
+        if (index < 0) {
+            $('.loop').css({
+                marginLeft: -1226 * (count - 1)
+            })
+            //  把 index 赋值为 
+            //  向下一张图片进行过渡
+            index = count - 2
+        }
+
+        // 停止动画 stop
+        $('.loop').stop(true, true).animate({
+            // 清空动画队列 ，立即停止当前动画并到达终点状态，
+            marginLeft: -1226 * index
+        }, 500)
+        $('.pagenation li').eq(index).addClass('current').siblings().removeClass('current')
+    })
+
+    $('.pagenation li').click(function () {
+        index = $(this).index()
+        $(this).addClass('current').siblings().removeClass('current')
+        $('.loop').stop(true, true).animate({
+            marginLeft: -1226 * index
+        }, 500)
+    })
+</script>

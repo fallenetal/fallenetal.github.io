@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>我的主页</title>
     <link rel="stylesheet" href="./index/minireset.css">
     <link rel="stylesheet" href="./index/index.css">
     <style>
@@ -33,6 +33,26 @@
                 margin: 1rem;
             }
         }
+
+        @media (max-width: 768px) {
+            body .main .section .wrap ul.item li {
+                /* margin: 0.5rem; */
+                width: 49%;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 442px) {
+            body .main .section .wrap ul.item li {
+                width: 100%;
+                height: auto;
+            }
+
+            body .main .section.section-three .wrap ul.item li {
+                width: 100%;
+                height: auto;
+            }
+        }
     </style>
 </head>
 
@@ -40,7 +60,9 @@
     <header class="head">
         <div class="wrap">
             <div class="logo">
-                <img class="logo_img" src="./index/images/icon.png" alt="">
+                <a href="">
+                    <img class="logo_img" src="./index/images/icon.png" alt="头像">
+                </a>
             </div>
         </div>
     </header>
@@ -51,27 +73,30 @@
                 <ul class="item">
                     <li>
                         <a href="./静态布局/360急速浏览器/index.html">
-                            <img src="./index/images/360.png" alt="">
+                            <img src="./index/images/360.png" alt="360急速浏览器">
                         </a>
+                        <div class="mask">
+                            <h3>360急速浏览器</h3>
+                        </div>
                     </li>
                     <li>
                         <a href="./静态布局/Aesthetic/Aesthetic.html">
-                            <img src="./index/images/整形医院.png" alt="">
+                            <img src="./index/images/整形医院.png" alt="整形医院">
                         </a>
                     </li>
                     <li>
                         <a href="./静态布局/dress/dress.html">
-                            <img src="./index/images/服装.png" alt="">
+                            <img src="./index/images/服装.png" alt="服装">
                         </a>
                     </li>
                     <li>
                         <a href="./静态布局/kiddy/kiddy.html">
-                            <img src="./index/images/儿童中心.png" alt="">
+                            <img src="./index/images/儿童中心.png" alt="儿童中心">
                         </a>
                     </li>
                     <li>
                         <a href="./静态布局/pet/pet.html">
-                            <img src="./index/images/宠问.png" alt="">
+                            <img src="./index/images/宠问.png" alt="宠问">
                         </a>
                     </li>
                 </ul>
@@ -81,12 +106,36 @@
             <div class="wrap">
                 <h3>JavaScript</h3>
                 <ul class="item">
-                    <li>lis 1</li>
-                    <li>lis 2</li>
-                    <li>lis 3</li>
-                    <li>lis 4</li>
-                    <li>lis 5</li>
-                    <li>lis 6</li>
+                    <li>
+                        <a href="./JavaScript/飞机大战/planewar.html">
+                            <img src="./index/images/飞机大战.png" alt="飞机大战">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./JavaScript/别踩白块/别踩白块.html">
+                            <img src="./index/images/别踩白块.png" alt="别踩白块">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./JavaScript/MusicPlayer/MusicPlayer.html">
+                            <img src="./index/images/音乐播放器.png" alt="音乐播放器">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./JavaScript/手风琴/手风琴.html">
+                            <img src="./index/images/手风琴.png" alt="手风琴">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./JavaScript/奇奇怪怪的的作品/翻牌游戏.html">
+                            <img src="./index/images/翻纸牌.png" alt="翻纸牌">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./JavaScript/奇奇怪怪的的作品/九宫格文字抽奖.html">
+                            <img src="./index/images/九宫格抽奖.png" alt="九宫格抽奖">
+                        </a>
+                    </li>
                 </ul>
             </div>
         </section>
@@ -94,12 +143,16 @@
             <div class="wrap">
                 <h3>Bootstrap</h3>
                 <ul class="item">
-                    <li>lis 1</li>
-                    <li>lis 2</li>
-                    <li>lis 3</li>
-                    <li>lis 4</li>
-                    <li>lis 5</li>
-                    <li>lis 6</li>
+                    <li>
+                        <a href="./Bootstrap/儿童中心/index.html">
+                            <img src="./index/images/儿童中心.png" alt="儿童中心">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./Bootstrap/整形医院/index.html">
+                            <img src="./index/images/整形医院.png" alt="整形医院">
+                        </a>
+                    </li>
                 </ul>
             </div>
         </section>

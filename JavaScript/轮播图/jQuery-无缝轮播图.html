@@ -56,7 +56,7 @@
             border-radius: 50%;
             background-color: wheat;
             margin: 0 10px;
-            transition: all .2s;
+            transition: all .5s;
         }
 
         .swiper .jump .active {
@@ -69,6 +69,13 @@
             justify-content: space-between;
             position: absolute;
             top: 50%;
+        }
+
+        .swiper .btn button{
+            width: 40px;
+            height: 40px;
+            /* border-radius: 50%; */
+            border: none;
         }
     </style>
 </head>
@@ -110,31 +117,35 @@
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 
+    // 存在bug  index 与 this.index的值不一样
     var index = 0
     var is = true
 
+    // 生成小圆点
     $.each($('ul.items').find('li'), function (i, e) {
         $('.jump').append('<li></li>')
     })
 
+    // 初始化小圆点
     $('.jump').find('li').eq(0).addClass('active')
 
+    // 克隆第一张
     $('ul.items').find('li').eq(0).clone().appendTo('.items')
 
-    function update(index) {
+    // 高亮
+    function update() {
         $('.jump').find('li').eq(index).addClass('active').siblings().removeClass('active')
     }
 
+    //  点击小圆点
     $('.jump').on('click', 'li', function () {
-        update($(this).index())
-        console.log($(this).index());
+        index = $(this).index()
+        update()
         $('.items').css({
-            left: -$(this).index() * 100 + '%',
-            transition: 'all .2s'
+            left: -index * 100 + '%',
+            transition: 'all .5s'
         })
     })
-
-
 
     //右
     function showNext() {
@@ -142,9 +153,8 @@
             index++
             $('.items').css({
                 left: -index * 100 + '%',
-                transition: 'all .2s'
+                transition: 'all .5s'
             })
-
             if (index === 4) {
                 index = 0
                 setTimeout(function () {
@@ -152,15 +162,14 @@
                         left: 0,
                         transition: 'none'
                     })
-                }, 200)
+                }, 500)
             }
-            update(index)
+            update()
             is = false
             setTimeout(function () {
                 is = true
-            }, 200)
+            }, 500)
         }
-        console.log(index);
     }
 
     $('.btn').find('button').eq(1).click(function () {
@@ -183,28 +192,30 @@
                 setTimeout(function () {
                     $('.items').css({
                         left: -index * 100 + '%',
-                        transition: 'all .2s'
+                        transition: 'all .5s'
                     })
-                }, 200)
+                }, 0)
             } else {
                 $('.items').css({
                     left: -index * 100 + '%',
                 })
             }
-            update(index)
+            update()
             is = false
             setTimeout(function () {
                 is = true
-            }, 200)
+            }, 500)
         }
     })
 
+    // 计时器
     var timer
     function time() {
         timer = setInterval(showNext, 3000)
     }
     time()
 
+    // 鼠标移入移出
     $('.swiper').hover(
         function () {
             clearInterval(timer)

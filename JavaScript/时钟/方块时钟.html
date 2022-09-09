@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>方块时钟</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            position: relative;
+            background-image: url(./1.jpg);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+
+        .wrap{
+            width: 600px;
+            height: 150px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            transform: translateY(200px);
+            display: flex;
+        }
+
+        .se,
+        .me,
+        .hu {
+            display: flex;
+            margin: 0 20px;
+        }
+
+        .num {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100px;
+        }
+
+        .num i {
+            width: 30px;
+            height: 30px;
+            margin: 1px;
+            border: none;
+            transition: all .3s;
+
+        }
+        
+        .num i.active {
+            background-color: rgb(255, 65, 163);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="hu">
+            <div class="num hu1"></div>
+            <div class="num hu2"></div>
+        </div>
+
+        <div class="me">
+            <div class="num me1"></div>
+            <div class="num me2"></div>
+        </div>
+
+        <div class="se">
+            <div class="num se1"></div>
+            <div class="num se2"></div>
+        </div>
+    </div>
+</body>
+<script>
+    var nums = [
+        [
+            [1, 1, 1],
+            [1, 0, 1],
+            [1, 0, 1],
+            [1, 0, 1],
+            [1, 1, 1],
+        ],
+        [
+            [0, 0, 1],
+            [0, 0, 1],
+            [0, 0, 1],
+            [0, 0, 1],
+            [0, 0, 1],
+        ],
+        [
+            [1, 1, 1],
+            [0, 0, 1],
+            [1, 1, 1],
+            [1, 0, 0],
+            [1, 1, 1],
+        ],
+        [
+            [1, 1, 1],
+            [0, 0, 1],
+            [1, 1, 1],
+            [0, 0, 1],
+            [1, 1, 1],
+        ],
+        [
+            [1, 0, 1],
+            [1, 0, 1],
+            [1, 1, 1],
+            [0, 0, 1],
+            [0, 0, 1],
+        ],
+        [
+            [1, 1, 1],
+            [1, 0, 0],
+            [1, 1, 1],
+            [0, 0, 1],
+            [1, 1, 1],
+        ],
+        [
+            [1, 1, 1],
+            [1, 0, 0],
+            [1, 1, 1],
+            [1, 0, 1],
+            [1, 1, 1],
+        ],
+        [
+            [1, 1, 1],
+            [0, 0, 1],
+            [0, 0, 1],
+            [0, 0, 1],
+            [0, 0, 1],
+        ],
+        [
+            [1, 1, 1],
+            [1, 0, 1],
+            [1, 1, 1],
+            [1, 0, 1],
+            [1, 1, 1],
+        ],
+        [
+            [1, 1, 1],
+            [1, 0, 1],
+            [1, 1, 1],
+            [0, 0, 1],
+            [1, 1, 1],
+        ],
+    ];
+
+    //   初始化
+    nums[0].forEach(function (row, rowi) {
+
+        row.forEach(function (item, coli) {
+            var node = document.createElement("i");
+            var node1 = document.createElement("i");
+
+            var node2 = document.createElement("i");
+            var node3 = document.createElement("i");
+
+            var node4 = document.createElement("i");
+            var node5 = document.createElement("i");
+
+            if (item) {
+                node.classList.add("active");
+                node1.classList.add("active");
+
+                node2.classList.add("active");
+                node3.classList.add("active");
+
+                node4.classList.add("active");
+                node5.classList.add("active");
+            }
+            document.querySelector(".se2").appendChild(node);
+            document.querySelector(".se1").appendChild(node1);
+
+
+            document.querySelector(".me2").appendChild(node2);
+            document.querySelector(".me1").appendChild(node3);
+
+            document.querySelector(".hu2").appendChild(node4);
+            document.querySelector(".hu1").appendChild(node5);
+        });
+
+    });
+
+    setInterval(() => {
+        var d = new Date()
+        var h = d.getHours()
+        var m = d.getMinutes()
+        var s = d.getSeconds()
+        return showHours(h), showMinutes(m), showSeconds(s)
+    })
+
+    // 模板
+    function show(n, Dom1, Dom2) {
+        var n1 = Math.floor(parseInt(n / 10))
+        var n2 = Math.floor(parseInt(n % 10))
+
+        var dom1 = Dom1
+        var dom2 = Dom2
+
+        nums[n1].forEach(function (row, rowi) {
+            row.forEach(function (item, coli) {
+                if (item) {
+                    dom2[rowi * 3 + coli].classList.add("active");
+                } else {
+                    dom2[rowi * 3 + coli].classList.remove("active");
+                }
+            });
+        });
+        nums[n2].forEach(function (row, rowi) {
+            row.forEach(function (item, coli) {
+                if (item) {
+                    dom1[rowi * 3 + coli].classList.add("active");
+                } else {
+                    dom1[rowi * 3 + coli].classList.remove("active");
+                }
+            });
+        });
+    }
+
+    // 时
+    function showHours(h) {
+        var iDoms4 = document.querySelector(".hu2").querySelectorAll("i");
+        var iDoms5 = document.querySelector(".hu1").querySelectorAll("i");
+        show(h, iDoms4, iDoms5)
+    }
+
+    // 分
+    function showMinutes(m) {
+        var iDoms2 = document.querySelector(".me2").querySelectorAll("i");
+        var iDoms3 = document.querySelector(".me1").querySelectorAll("i");
+        show(m, iDoms2, iDoms3)
+    }
+
+    // 秒
+    function showSeconds(s) {
+        var iDoms = document.querySelector(".se2").querySelectorAll("i");
+        var iDoms1 = document.querySelector(".se1").querySelectorAll("i");
+        show(s, iDoms, iDoms1)
+    }
+</script>
+
+</html>

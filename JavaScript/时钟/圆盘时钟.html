@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圆盘时钟</title>
+    <style>
+        body {
+            height: 100vh;
+            background-image: url(./1.jpg);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+
+        .stage {
+            width: 500px;
+            height: 500px;
+            background-color: lightblue;
+            border-radius: 50%;
+            position: relative;
+            top: 100px;
+            margin: 0 auto;
+        }
+
+        .stage .tail {
+            position: relative;
+        }
+
+        .stage .tail i {
+            display: block;
+            transform-origin: center 250px;
+        }
+
+        .stage .tail i.b {
+            width: 8px;
+            height: 40px;
+            background-color: lightcoral;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            margin-left: -4px;
+        }
+
+        .stage .tail i.s {
+            width: 4px;
+            height: 20px;
+            background-color: black;
+
+            position: absolute;
+            top: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .stage .needle {
+            z-index: 900;
+            width: 2px;
+            height: 250px;
+            background-color: limegreen;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            margin-left: -1px;
+            transform-origin: center 250px;
+        }
+
+        .stage .needle1 {
+            z-index: 909;
+            width: 3px;
+            height: 200px;
+            background-color: rgb(50, 73, 205);
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            margin-left: -1px;
+            transform-origin: center 200px;
+            transform: rotate(1deg);
+        }
+
+        .stage .needle2 {
+            z-index: 999;
+            width: 4px;
+            height: 150px;
+            background-color: rgb(171, 205, 50);
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            margin-left: -1px;
+            transform-origin: center 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stage">
+        <div class="tail">
+            <!-- js加入时间点 -->
+        </div>
+        <!-- js加入needle -->
+        <!-- 时针60分跳一次 分针60s跳一次 -->
+        <!-- <div class="needle1"></div> -->
+        <!-- <div class="needle2"></div> -->
+    </div>
+</body>
+<script>
+
+    var d = new Date()
+    // 创建div元素  秒针
+    var needle = document.createElement('div')
+    // 给div    创建一个class名needle
+    needle.setAttribute('class', 'needle')
+    // 初始页面指针
+    needle.style.transform = "rotate(" + d.getSeconds() * 6 + "deg)";
+    // 把div元素加入到父类stage的后面
+    document.querySelector(".stage").appendChild(needle);
+
+
+    // 创建div元素  分针
+    var needle1 = document.createElement('div')
+    // 给div    创建一个class名needle
+    needle1.setAttribute('class', 'needle1')
+    // 初始页面指针
+    needle1.style.transform = "rotate(" + d.getMinutes() * 6 + "deg)";
+    // 把div元素加入到父类stage的后面
+    document.querySelector(".stage").appendChild(needle1);
+
+    // 创建div元素  时针
+    var needle2 = document.createElement('div')
+    // 给div    创建一个class名needle
+    needle2.setAttribute('class', 'needle2')
+    // 初始页面指针
+    needle2.style.transform = "rotate(" + d.getHours() * 30 + "deg)";
+    // 把div元素加入到父类stage的后面
+    document.querySelector(".stage").appendChild(needle2);
+
+
+    // 获取当前秒数 , 让指针动起来
+    function setNeedle() {
+
+        //获取时间 
+        var d = new Date()
+
+        // 获取当前秒数
+        var s = parseInt(d.getTime() / 1000 % (24 * 60 * 60) % (60 * 60) % 60)
+
+        var m = parseInt(d.getTime() / 1000 % (24 * 60 * 60) % (60 * 60) / 60)
+
+        var h = parseInt(d.getHours() + m / 60)
+        // console.log(h);
+
+        // 计算每一秒的旋转量
+        needle.style.transform = "rotate(" + s * 6 + "deg)";
+        // console.log(needle);
+
+        needle1.style.transform = "rotate(" + m * 6 + "deg)";
+
+        needle2.style.transform = "rotate(" + h * 30 + "deg)";
+        // console.log(needle2);
+    }
+
+    // 开启计时器
+    setInterval(setNeedle, 1000)
+
+    // 打印时间点
+    for (let i = 0; i < 12 * 5; i++) {
+
+        // 创建元素i    打印时间点i
+        var node = document.createElement("i");
+
+        // 判断长短的时间点
+        if (i % 5 === 0) {
+            // 创建class名
+            node.className = "b";
+        } else {
+            // 创建class名
+            node.className = "s";
+        }
+
+        // 给每一个时间点一个旋转量
+        node.style.transform = "rotate(" + i * (360 / (12 * 5)) + "deg)";
+        // 把时间点加入到父类tail里面
+        document.querySelector(".tail").appendChild(node);
+    }
+</script>
+
+</html>

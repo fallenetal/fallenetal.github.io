@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手风琴</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            /* position: relative; */
+            background-image: url('./images/1.jpg');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            backdrop-filter: blur(2px)
+        }
+        .card {
+            width: 1100px;
+            height: 500px;
+
+            box-shadow: 0 0 5px 3px rgba(255, 255, 255, 0.674);
+            
+            transform: scale(.8);
+
+            display: flex;
+            /* background-color: lightblue; */
+
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .card div {
+            width: 100px;
+            height: 100%;
+            background-position:center;
+            background-size: auto 100%;
+            transition: all .3s;
+        }
+
+        .card div:nth-child(1) {
+            width: 800px;
+            background-image: url('./images/1.jpg');
+        }
+
+        .card div:nth-child(2) {
+            background-image: url('./images/2.jpg');
+        }
+
+        .card div:nth-child(3) {
+            background-image: url('./images/3.jpg');
+        }
+
+        .card div:nth-child(4) {
+            background-image: url('./images/4.jpg');
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+<script>
+    var body = document.querySelector('body')
+    // querySelectorAll获取到的是节点数组
+    var divEl = document.querySelectorAll('.card div')
+    divEl.forEach(function (img, i) {
+        img.onclick = function () {
+            divEl.forEach(function (el, index) {
+                if (index === i) {
+                    el.style.width = '800px'
+                    body.style.backgroundImage = 'URL(./images/' + (index+1) +'.jpg'
+                } else {
+                    el.style.width = '100px'
+                }
+            })
+        }
+    })
+</script>
+
+</html>

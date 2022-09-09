@@ -5,17 +5,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width= , initial-scale=1.0">
-    <title>Document</title>
+    <title>别踩白块</title>
     <style>
         body {
             margin: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background-image: url(./bj.webp);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
         }
 
         .stage {
-            width: 100%;
-            height: 580px;
-            height: 100vh;
-            background-color: rgb(255, 255, 255);
+            width: 360px;
+            height: 550px;
+            overflow: hidden;
+            background-color: rgba(211, 211, 211, 0.666);
+            position: absolute;
+            left: 50%;
+            margin-left: -180px;
+        }
+
+        .stage button {
+            z-index: 100;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 100px;
+            height: 40px;
+            margin-top: -20px;
+            margin-left: -50px;
         }
 
         .stage .main {
@@ -32,11 +53,11 @@
             left: 0;
             width: 90px;
             height: 90px;
-            background-color: rgba(0, 0, 0, 0.693);
+            background-color: rgb(0, 0, 0);
         }
 
         .stage .main i.played {
-            background-color: rgb(199, 193, 193);
+            background-color: rgb(247, 247, 247);
         }
 
         .stage .over {
@@ -48,16 +69,27 @@
             background-color: rgba(242, 86, 62, 0.646);
             display: none;
             text-align: center;
-            line-height: 640px;
+            line-height: 550px;
             font-size: 50px;
             font-family: '仿宋';
             color: white;
         }
 
+        .stage .over button {
+            width: 100px;
+            height: 40px;
+            position: absolute;
+            left: 50%;
+            top: 60%;
+            margin-left: -50px;
+            border-radius: 50px;
+            border: none;
+        }
+
         .score {
             display: flex;
             position: relative;
-            z-index: 999;
+            z-index: 99;
             justify-content: center;
             top: 20px;
             pointer-events: none;
@@ -116,10 +148,14 @@
 
 <body>
     <div class="stage">
+        <button>开始游戏</button>
         <!-- 游戏的主体 -->
         <div class="main"></div>
         <!-- 游戏结束的覆盖面 -->
-        <div class="over">游戏结束</div>
+        <div class="over">
+            游戏结束
+            <button>重新开始</button>
+        </div>
         <section class="score">
             <i class="num num0"></i>
         </section>
@@ -161,172 +197,180 @@
     // 速度
     var speed = 0.05;
 
-    // 创建白块 构造器
-    function Dot(y) {
-        this.x = Math.floor(Math.random() * 4)
-        this.y = y
+    document.querySelector('.stage button').onclick = function () {
 
-        // 创建元素
-        this.node = document.createElement('i')
+        this.style.display = 'none'
 
-        // 元素大小
-        this.updateView()
+        // 创建白块 构造器
+        function Dot(y) {
+            this.x = Math.floor(Math.random() * 4)
+            this.y = y
 
-        // 追加到盒子
-        mainEl.appendChild(this.node)
+            // 创建元素
+            this.node = document.createElement('i')
 
-        // 点击白块 改变元素
+            // 元素大小
+            this.updateView()
 
-        // 使用this保存每一个实例的Dot对象
-        var _this = this
-        // console.log(_this);
-        this.node.onclick = function () {
+            // 追加到盒子
+            mainEl.appendChild(this.node)
 
-            // 获取到第一个还没点击的节点元素
+            // 点击白块 改变元素
+
+            // 使用this保存每一个实例的Dot对象
+            var _this = this
+            // console.log(_this);
+            this.node.onclick = function () {
+
+                // 获取到第一个还没点击的节点元素
+                var firstUnPlayed = dots.filter(function (e) {
+                    return !e.played
+                })[0]
+
+                // 限制点击的顺序   只能点击了第一个才可能继续后面的点击
+                if (this.isSameNode(firstUnPlayed.node)) {
+                    // 事件处理函数内部的this 指向 dom
+                    // console.log(this, _this);
+                    // 给元素添加类名
+                    _this.node.classList.add('played')
+
+                    // 给属性played 赋值
+                    _this.played = true
+
+                    // 阻止冒泡 避免点击子元素的适合冒泡到父元素上
+                    event.stopPropagation()
+
+                    // 创建音乐节点
+                    var node = document.createElement('audio')
+                    // 添加音乐的路径
+                    node.src = "./music/sound_" + _this.music + ".mp3";
+                    // play()启动
+                    node.play()
+
+                    // 当得分是10的倍数时   加速
+                    score++
+                    if (score % 10 === 0) {
+                        speed += 0.009
+                    }
+
+                    // 开始先清空  计分的盒子
+                    scoreEl.innerHTML = ''
+                    // 显示分数
+                    String(score).split('').forEach(function (n) {
+                        var node = document.createElement("i");
+                        node.classList.add('num')
+                        node.classList.add('num' + n)
+                        scoreEl.appendChild(node)
+
+                    })
+                }
+            }
+        }
+
+        // 创建元素大小
+        Dot.prototype.updateView = function () {
+            this.node.style.left = this.x * 90 + 'px'
+            this.node.style.top = this.y * 90 + 'px'
+        }
+
+        // 元素移动速度
+        Dot.prototype.move = function () {
+            this.y += speed
+        }
+
+        // 初始化游戏
+        function init() {
+            for (var i = 3; i >= 0; i--) {
+                // console.log(i);
+                // 让第一个 i 在最下面  主要控制 y 的位置
+                var d = new Dot(i - 1)
+
+                // 让音乐一直都是顺序排序   先删除第一个    在重新添加回到数组末尾
+                // 达到循环的效果
+                var tem = puzi.shift()
+                puzi.push(tem)
+                // 把当前的音乐值赋予new的实例对象
+                d.music = tem
+
+                // 存进数组
+                dots.push(d)
+                // console.log(dots);
+
+            }
+        }
+        init()
+
+        // 游戏主体
+        var id = setInterval(function () {
+
+            // 让元素每一帧都移动
+            dots.forEach(function (e) {
+
+                // 移动速度
+                e.move()
+
+                // 更新位置
+                e.updateView()
+            })
+            // console.log(dots[dots.length - 1].y);
+
+            // 判断最后一个元素是否已经出现
+            // 出现则继续在后面在生成新的元素
+            if (dots[dots.length - 1].y >= -speed) {
+
+                // 在后面再生成一个元素
+                var d = new Dot(-1)
+
+                var tem = puzi.shift()
+                puzi.push(tem)
+                d.music = tem
+
+                // 继续添加到数组
+                dots.push(d)
+            }
+
+            // 控制游戏结束
+            // 检查第一个小点 底部是否碰底边
+
+            //  找到第一个没有点击的元素 
             var firstUnPlayed = dots.filter(function (e) {
                 return !e.played
             })[0]
 
-            // 限制点击的顺序   只能点击了第一个才可能继续后面的点击
-            if (this.isSameNode(firstUnPlayed.node)) {
-                // 事件处理函数内部的this 指向 dom
-                // console.log(this, _this);
-                // 给元素添加类名
-                _this.node.classList.add('played')
-
-                // 给属性played 赋值
-                _this.played = true
-
-                // 阻止冒泡 避免点击子元素的适合冒泡到父元素上
-                event.stopPropagation()
-
-                // 创建音乐节点
-                var node = document.createElement('audio')
-                // 添加音乐的路径
-                node.src = "./music/sound_" + _this.music + ".mp3";
-                // play()启动
-                node.play()
-
-                // 当得分是10的倍数时   加速
-                score++
-                if (score % 10 === 0) {
-                    speed += 0.009
-                }
-
-                // 开始先清空  计分的盒子
-                scoreEl.innerHTML = ''
-                // 显示分数
-                String(score).split('').forEach(function (n) {
-                    var node = document.createElement("i");
-                    node.classList.add('num')
-                    node.classList.add('num' + n)
-                    scoreEl.appendChild(node)
-
-                })
+            // console.log(firstUnPlayed);
+            // console.log(firstUnPlayed.y + 1);
+            // firstUnPlayed.y + 1 元素的底边   要＋1   是因为现在每一个元素都是按照top的定位点算的
+            if (firstUnPlayed && (firstUnPlayed.y + 1) * 90 >= 550) {
+                clearInterval(id)
+                overEl.style.display = 'block'
             }
-        }
-    }
 
-    // 创建元素大小
-    Dot.prototype.updateView = function () {
-        this.node.style.left = this.x * 90 + 'px'
-        this.node.style.top = this.y * 90 + 'px'
-    }
+            // 判断已经点击的元素是否已经超出视图范围
+            var firstPlayed = dots.filter(function (e) {
+                return e.played
+            })[0]
 
-    // 元素移动速度
-    Dot.prototype.move = function () {
-        this.y += speed
-    }
+            // console.log(firstPlayed);
+            if (firstPlayed && firstPlayed.y * 90 > 640) {
+                // 超出了则删除已经点击的第一个元素
+                // 并删除数组里面相应的node元素
+                mainEl.removeChild(firstPlayed.node)
+                dots.splice(dots.indexOf(firstPlayed), 1)
+            }
 
-    // 初始化游戏
-    function init() {
-        for (var i = 3; i >= 0; i--) {
-            // console.log(i);
-            // 让第一个 i 在最下面  主要控制 y 的位置
-            var d = new Dot(i - 1)
+        }, 30)
 
-            // 让音乐一直都是顺序排序   先删除第一个    在重新添加回到数组末尾
-            // 达到循环的效果
-            var tem = puzi.shift()
-            puzi.push(tem)
-            // 把当前的音乐值赋予new的实例对象
-            d.music = tem
-
-            // 存进数组
-            dots.push(d)
-            // console.log(dots);
-
-        }
-    }
-    init()
-
-    // 游戏主体
-    var id = setInterval(function () {
-
-        // 让元素每一帧都移动
-        dots.forEach(function (e) {
-
-            // 移动速度
-            e.move()
-
-            // 更新位置
-            e.updateView()
-        })
-        // console.log(dots[dots.length - 1].y);
-
-        // 判断最后一个元素是否已经出现
-        // 出现则继续在后面在生成新的元素
-        if (dots[dots.length - 1].y >= 0) {
-
-            // 在后面再生成一个元素
-            var d = new Dot(-1)
-
-            var tem = puzi.shift()
-            puzi.push(tem)
-            d.music = tem
-
-            // 继续添加到数组
-            dots.push(d)
-        }
-
-        // 控制游戏结束
-        // 检查第一个小点 底部是否碰底边
-
-        //  找到第一个没有点击的元素 
-        var firstUnPlayed = dots.filter(function (e) {
-            return !e.played
-        })[0]
-
-        // console.log(firstUnPlayed);
-        // console.log(firstUnPlayed.y + 1);
-        // firstUnPlayed.y + 1 元素的底边   要＋1   是因为现在每一个元素都是按照top的定位点算的
-        if (firstUnPlayed && (firstUnPlayed.y + 1) * 90 >= 640) {
-            clearInterval(id)
+        // 点到了白块区域外 结束游戏
+        mainEl.onclick = function () {
             overEl.style.display = 'block'
+            clearInterval(id)
         }
-
-        // 判断已经点击的元素是否已经超出视图范围
-        var firstPlayed = dots.filter(function (e) {
-            return e.played
-        })[0]
-
-        // console.log(firstPlayed);
-        if (firstPlayed && firstPlayed.y * 90 > 640) {
-            // 超出了则删除已经点击的第一个元素
-            // 并删除数组里面相应的node元素
-            mainEl.removeChild(firstPlayed.node)
-            dots.splice(dots.indexOf(firstPlayed), 1)
-        }
-
-    }, 30)
-
-    // 点到了白块区域外 结束游戏
-    mainEl.onclick = function () {
-        console.log('点错了');
-        overEl.style.display = 'block'
-        clearInterval(id)
     }
 
+
+    document.querySelector('.over button').onclick = function () {
+        location = location
+    }
 </script>
 
 </html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>翻纸牌</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./minireset.css">
+    <style>
+        body {
+            height: 100vh;
+            overflow: hidden;
+            background-image: url(./扑克牌bj.webp);
+            background-position: 0 58%;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .wrap {
+            width: 500px;
+            height: 500px;
+            background-position: center;
+            background-size: cover;
+            box-sizing: border-box;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .wrap .card {
+            z-index: 9;
+            width: 100px;
+            height: 100px;
+            background-color: #fff;
+            text-align: center;
+            line-height: 100px;
+            position: relative;
+            transition: all 1s;
+            transform-style: preserve-3d;
+            color: lightcoral;
+        }
+
+        .wrap .card i {
+            font-size: 30px;
+        }
+
+        .wrap .card.open {
+            transform: rotateY(180deg);
+        }
+
+        .wrap .card.equal {
+            transform: rotateY(180deg);
+            color: rgb(238, 48, 255);
+        }
+
+        .wrap .card .mask {
+            backface-visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: aqua;
+            background-image: url(./扑克牌.webp);
+            background-position: center;
+            background-size: 110%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap"></div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+
+<script>
+    var icons = [
+        "fa-bath",
+        "fa-telegram",
+        "fa-anchor",
+        "fa-battery-quarter",
+        "fa-bank",
+        "fa-bug",
+        "fa-bus",
+        "fa-child",
+    ];
+
+    function doubleArr(arr) {
+        var tmp = []
+        arr.forEach(function (e) {
+            tmp.push(e)
+            tmp.push(e)
+        });
+        return tmp
+    }
+
+    function shuffle(arr) {
+        arr.sort(function () {
+            return Math.random() - 0.5
+        })
+        return arr
+    }
+
+    var arr = shuffle(doubleArr(icons))
+
+    for (let i = 0; i < arr.length; i++) {
+        let node = document.createElement('div')
+        node.classList.add('card')
+        node.innerHTML = `<i class="fa ${arr[i]}"></i><div class="mask"></div>`
+        document.querySelector('.wrap').appendChild(node)
+
+        // 单击
+        node.onclick = function () {
+            // 
+            if (!this.classList.contains('equal')) {
+                this.classList.add('open')
+
+                var openedLis = []
+
+                // 把点击的加入openedLis
+                for (let i = 0; i < document.querySelector('.wrap').children.length; i++) {
+                    if (document.querySelector('.wrap').children[i].classList.contains('open')) {
+                        openedLis.push(document.querySelector('.wrap').children[i])
+                    }
+                }
+
+                // 相同
+                if (openedLis.length === 2) {
+                    setTimeout(function () {
+                        // 两个 li 不相同则删除 open
+                        openedLis[0].classList.remove('open')
+                        openedLis[1].classList.remove('open')
+
+                        // 相同则把open改为equal    不在执行onclick
+                        if (openedLis[0].innerHTML === openedLis[1].innerHTML) {
+                            openedLis[0].classList.add("equal");
+                            openedLis[1].classList.add("equal");
+                            console.log(123);
+                        }
+                    }, 1000)
+                }
+
+                if (openedLis.length > 2) {
+                    openedLis.forEach((e) => {
+                        e.classList.remove('open')
+                    })
+                }
+
+            }
+        }
+    }
+</script>
+
+</html>
