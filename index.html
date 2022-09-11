@@ -8,6 +8,7 @@
     <title>我的主页</title>
     <link rel="stylesheet" href="./index/minireset.css">
     <link rel="stylesheet" href="./index/index.css">
+    <link rel="icon" sizes="any" mask="" href="./index/images/icon.png">
     <style>
         @media (max-width: 1200px) {
 
@@ -16,8 +17,15 @@
             }
 
             body .head .wrap .logo {
-                width: 25rem;
-                height: 25rem;
+                width: 40rem;
+                height: 40rem;
+            }
+
+            body .head .wrap .logo::before {
+                width: 44rem;
+                height: 44rem;
+                margin-left: -22rem;
+                margin-top: -22rem;
             }
 
             body .main .section {
@@ -36,7 +44,6 @@
 
         @media (max-width: 768px) {
             body .main .section .wrap ul.item li {
-                /* margin: 0.5rem; */
                 width: 49%;
                 height: auto;
             }
@@ -64,6 +71,7 @@
                     <img class="logo_img" src="./index/images/icon.png" alt="头像">
                 </a>
             </div>
+
         </div>
     </header>
     <main class="main">
@@ -76,27 +84,39 @@
                             <img src="./index/images/360.png" alt="360急速浏览器">
                         </a>
                         <div class="mask">
-                            <h3>360急速浏览器</h3>
+                            <h5>360急速浏览器</h5>
                         </div>
                     </li>
                     <li>
                         <a href="./静态布局/Aesthetic/Aesthetic.html">
                             <img src="./index/images/整形医院.png" alt="整形医院">
+                            <div class="mask">
+                                <h5>整形医院</h5>
+                            </div>
                         </a>
                     </li>
                     <li>
                         <a href="./静态布局/dress/dress.html">
                             <img src="./index/images/服装.png" alt="服装">
+                            <div class="mask">
+                                <h5>服装</h5>
+                            </div>
                         </a>
                     </li>
                     <li>
                         <a href="./静态布局/kiddy/kiddy.html">
                             <img src="./index/images/儿童中心.png" alt="儿童中心">
+                            <div class="mask">
+                                <h5>儿童中心</h5>
+                            </div>
                         </a>
                     </li>
                     <li>
                         <a href="./静态布局/pet/pet.html">
                             <img src="./index/images/宠问.png" alt="宠问">
+                            <div class="mask">
+                                <h5>宠问</h5>
+                            </div>
                         </a>
                     </li>
                 </ul>
@@ -134,6 +154,11 @@
                     <li>
                         <a href="./JavaScript/奇奇怪怪的的作品/九宫格文字抽奖.html">
                             <img src="./index/images/九宫格抽奖.png" alt="九宫格抽奖">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./JavaScript/时钟/方块时钟.html">
+                            <img src="./index/images/方块时钟.png" alt="九宫格抽奖">
                         </a>
                     </li>
                 </ul>

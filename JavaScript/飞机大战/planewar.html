@@ -174,45 +174,48 @@
 
         Aircraft.prototype.move = function () {
             setInterval(() => {
-                mainEl.onmousemove = () => {
+                mainEl.onmousedown = () => {
+                    mainEl.onmousemove = () => {
 
-                    let nodeW = this.node.offsetWidth
-                    let nodeH = this.node.offsetHeight
+                        let nodeW = this.node.offsetWidth
+                        let nodeH = this.node.offsetHeight
 
-                    let nodeX = event.offsetX - (nodeW / 2)
-                    let nodeY = event.offsetY - (nodeH / 2)
+                        let nodeX = event.offsetX - (nodeW / 2)
+                        let nodeY = event.offsetY - (nodeH / 2)
 
-                    if (nodeX < 0) {
-                        nodeX = 0
-                    }
-                    if (nodeX > mainEl.offsetWidth - nodeW) {
-                        nodeX = mainEl.offsetWidth - nodeW
-                    }
-                    if (nodeY < 0) {
-                        nodeY = 0
-                    }
-                    if (nodeY > mainEl.offsetHeight - nodeH) {
-                        nodeY = mainEl.offsetHeight - nodeH
-                    }
+                        if (nodeX < 0) {
+                            nodeX = 0
+                        }
+                        if (nodeX > mainEl.offsetWidth - nodeW) {
+                            nodeX = mainEl.offsetWidth - nodeW
+                        }
+                        if (nodeY < 0) {
+                            nodeY = 0
+                        }
+                        if (nodeY > mainEl.offsetHeight - nodeH) {
+                            nodeY = mainEl.offsetHeight - nodeH
+                        }
 
-                    this.node.style.left = nodeX + 'px'
-                    this.node.style.top = nodeY + 'px'
+                        this.node.style.left = nodeX + 'px'
+                        this.node.style.top = nodeY + 'px'
 
-                    // 创建子弹
-                    getBullet(nodeX, nodeY)
+                        // 创建子弹
+                        getBullet(nodeX, nodeY)
 
-                    for (let i = 0; i < enemyarry.length; i++) {
-                        //循环敌方飞机坐标 
-                        let enTop = parseInt(enemyarry[i].node.style.top)
-                        let enLeft = parseInt(enemyarry[i].node.style.left)
-                        // 死亡 50 60是我方飞机的宽高
-                        if (enLeft >= nodeX && enLeft <= nodeX + 50 && enTop >= nodeY && enTop <= nodeY + 60) {
-                            mainEl.remove()
-                            endEl.style.display = 'block'
+                        for (let i = 0; i < enemyarry.length; i++) {
+                            //循环敌方飞机坐标 
+                            let enTop = parseInt(enemyarry[i].node.style.top)
+                            let enLeft = parseInt(enemyarry[i].node.style.left)
+                            // 死亡 50 60是我方飞机的宽高
+                            if (enLeft >= nodeX && enLeft <= nodeX + 50 && enTop >= nodeY && enTop <= nodeY + 60) {
+                                mainEl.remove()
+                                endEl.style.display = 'block'
+                            }
                         }
                     }
                 }
             }, 50)
+
         }
         let plan = new Aircraft('./planes.png')
         plan.move()

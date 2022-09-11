@@ -11,14 +11,15 @@
             height: 100vh;
             display: flex;
             position: relative;
-            background-image: url(./1.jpg);
+            /* background-image: url(./1.jpg); */
+            background-image: linear-gradient(to right top, rgb(255, 196, 238), rgb(234, 209, 252), rgb(218, 220, 255), rgb(213, 229, 251), rgb(220, 234, 243));
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
             overflow: hidden;
         }
 
-        .wrap{
+        .wrap {
             width: 600px;
             height: 150px;
             position: absolute;
@@ -27,6 +28,8 @@
             margin: 0 auto;
             transform: translateY(200px);
             display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .se,
@@ -50,9 +53,9 @@
             transition: all .3s;
 
         }
-        
+
         .num i.active {
-            background-color: rgb(255, 65, 163);
+            background-color: rgb(245, 148, 198);
         }
     </style>
 </head>
