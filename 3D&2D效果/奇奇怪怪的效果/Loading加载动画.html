@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @keyframes animation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            background-color: #232323;
+            width: 100%;
+            height: 100vh;
+        }
+
+        h1,
+        h2,
+        p {
+            padding: 0;
+            margin: 0;
+        }
+
+        .wrap {
+            width: 330px;
+            height: 330px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .card {
+            width: 330px;
+            height: 330px;
+            background: linear-gradient(132deg, #1dbdff, #4cff6e, #fa057e, #fdfc47, #24fe41);
+            border-radius: 50%;
+            background-position: 1000% 50%;
+            background-size: 600%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            animation: animation 5s ease infinite;
+        }
+
+        .card .container {
+            width: 315px;
+            height: 315px;
+            background-color: #232323;
+            border-radius: 50%;
+            text-align: center;
+        }
+
+        .card .container h2 {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.2);
+            margin-top: 100px;
+            /* margin-left: 120px; */
+        }
+
+        .card .container h1 {
+            font-size: 5rem;
+            font-weight: bold;
+            color: white;
+            /* margin-left: 80px; */
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="card">
+            <div class="container">
+                <h2>LOADING</h2>
+                <h1>
+                    <span class="num">1</span>
+                    %
+                </h1>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var clock = 0;
+
+    setTimeout(function () {
+        start();
+    }, 2000);
+
+    function start() {
+        setInterval(countdown, 50); 
+    }
+
+    function countdown() {
+        if (clock < 100) {
+            clock += 1;
+            document.querySelector(".num").innerHTML = clock;
+        } else {
+            setTimeout(function () {
+                clock = 0;
+            }, 3000);
+        }
+
+    }
+</script>
+
+</html>

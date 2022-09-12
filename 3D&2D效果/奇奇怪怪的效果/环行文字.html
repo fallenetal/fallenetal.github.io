@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @keyframes animation1 {
+            0% {
+                transform: rotateY(0) rotateX(30deg);
+            }
+
+            100% {
+                /* CSS3 角度单位 turn(圈) */
+                /* 90deg = 100grad = 0.25turn ≈ 1.570796326794897rad */
+                transform: rotateY(1turn) rotateX(30deg);
+            }
+        }
+
+        @keyframes animation2 {
+            0% {
+                transform: rotateY(0);
+            }
+
+            100% {
+                transform: rotateY(1turn);
+            }
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+
+            width: 100%;
+            height: 100vh;
+
+            perspective: 40em;
+
+            background-color: #111;
+
+            overflow: hidden;
+        }
+
+        .wrap {
+            width: 17em;
+            height: 17em;
+            background-color: transparent;
+
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+
+            transform-style: preserve-3d;
+
+            animation: animation1 8s linear infinite;
+
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+
+        }
+
+        .wrap .card {
+            width: 1.5rem;
+            height: 4rem;
+            position: relative;
+            transform-style: preserve-3d;
+
+            animation: animation2 2s linear infinite;
+
+        }
+
+        .wrap .card.card1 {
+            position: absolute;
+            top: 50px;
+        }
+
+        .wrap .card .box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+
+            font-size: 2em;
+
+            color: aqua;
+
+            text-transform: uppercase;
+
+            transform: translateZ(105px);
+
+            display: flex;
+            align-items: center;
+        }
+
+        .wrap .card .box:empty:before {
+            /*empty 选择每个没有任何子级的p元素（包括文本节点） */
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: linear-gradient(transparent 45%, currentColor 45% 55%, transparent 55%);
+            content: "";
+            width: 100%;
+            height: 100%;
+        }
+
+        .wrap .card.card2{
+            animation-direction: reverse;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="card card1">
+
+        </div>
+        <div class="card card2">
+
+        </div>
+    </div>
+</body>
+<script>
+    // 自动生成     每一个12deg     一共30个
+    var deg = 12
+
+    var arr = ['l', 'o', 'a', 'd', 'i', 'n', 'g', '.', '.', '.']
+
+    for (let i = 0; i < 30; i++) {
+        var node = document.createElement('div')
+        var node1 = document.createElement('div')
+        node.classList.add('box')
+        node1.classList.add('box')
+        node.style.transform = "rotateY(" + (deg * i) + "deg) " + "translateZ(105px)"
+        node1.style.transform = "rotateY(" + (deg * i) + "deg) " + "translateZ(105px)"
+        document.querySelector('.card.card1').appendChild(node)
+        document.querySelector('.card.card2').appendChild(node1)
+    }
+
+    var boxs = Array.prototype.slice.call(document.querySelectorAll('.card1 .box'))
+    var boxs1 = Array.prototype.slice.call(document.querySelectorAll('.card2 .box'))
+    for (let i = 0; i < boxs.length / 3; i++) {
+        boxs[i].innerText = arr[i]
+        boxs1[i].innerText = arr[i]
+    }
+</script>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .wrap {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            background-color: #fed8c1;
+            transition: all .3s;
+        }
+
+        .container,
+        .container1,
+        .container2 {
+            width: 100%;
+            height: 100%;
+            transition: inherit;
+        }
+
+        .container {
+            position: absolute;
+            top: 0;
+        }
+        .container1 {
+            transform: scale(1.11);
+        }
+
+        .container2 {
+            transform: scale(1.33);
+            position: absolute;
+            top: 0;
+        }
+
+        .wrap .container .card ,
+        .wrap .container1 .card ,
+        .wrap .container2 .card {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            transition: inherit;
+        }
+
+        .wrap .container .card.lay-2 {
+            background-image: url('./images/lay2.svg');
+        }
+
+        .wrap .container1 .card.lay-3 {
+            background-image: url('./images/lay3.svg');
+        }
+
+        .wrap .container1 .card.lay-4 {
+            background-image: url('./images/lay4.svg');
+        }
+
+        .wrap .container1 .card.lay-5 {
+            background-image: url('./images/lay5.svg');
+        }
+
+        .wrap .container1 .card.lay-6 {
+            background-image: url('./images/lay6.svg');
+        }
+
+        .wrap .container2 .card.lay-7 {
+            background-image: url('./images/lay7.svg');
+        }
+
+        .wrap .container2 .card.lay-8 {
+            background-image: url('./images/lay8.svg');
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="container">
+            <div class="card lay-2"></div>
+        </div>
+        <div class="container1">
+            <div class="card lay-3"></div>
+            <div class="card lay-4"></div>
+            <div class="card lay-5"></div>
+            <div class="card lay-6"></div>
+        </div>
+        <div class="container2">
+            <div class="card lay-7"></div>
+            <div class="card lay-8"></div>
+        </div>
+    </div>
+    <script>
+        document.body.onmousemove = function () {
+            var x1 =((window.innerWidth/2) - event.pageX) / 50
+            var x2 =((window.innerWidth/2) - event.pageX) / 40
+            var x3 =((window.innerWidth/2) - event.pageX) / 30
+            var x4 =((window.innerWidth/2) - event.pageX) / 20
+            var x5 =((window.innerWidth/2) - event.pageX) / 10
+            var x6 =((window.innerWidth/2) - event.pageX) / 5
+
+            // console.log(window.innerWidth / 2 - event.pageX, event.pageX);
+
+            document.querySelector('.lay-3').style.transform = "translateX(" + x1 + "px)"
+            document.querySelector('.lay-4').style.transform = "translateX(" + x2 + "px)"
+            document.querySelector('.lay-5').style.transform = "translateX(" + x3 + "px)"
+            document.querySelector('.lay-6').style.transform = "translateX(" + x4 + "px)"
+            document.querySelector('.lay-7').style.transform = "translateX(" + x5 + "px)"
+            document.querySelector('.lay-8').style.transform = "translateX(" + x6 + "px)"
+        };
+    </script>
+</body>
+
+</html>

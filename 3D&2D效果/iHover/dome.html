@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: calc(100vw / 320)">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./minireset.css">
+    <link rel="stylesheet" href="./dome.css">
+    <style>
+        @media (max-width: 992px) {
+            .content1 .card {
+                width: 45rem;
+                bottom: -10rem;
+            }
+        }
+
+        @media (max-width: 442px) {
+            .content1 .loading {
+                width: 40rem;
+                height: 40rem;
+            }
+
+            .content1 .loading::after {
+                width: 38rem;
+                height: 38rem;
+                margin-top: -19rem;
+                margin-left: -19rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="content1">
+            <div class="loading">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="card">
+                <div class="text">Loding</div>
+            </div>
+        </div>
+
+        <div class="content2">
+            <div class="box"></div>
+            <div class="wraper">
+                <div class="outside"></div>
+                <div class="inside"></div>
+            </div>
+            <div class="list-box">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="around">
+                <div class="box1">
+                    <div></div>
+                </div>
+                <div class="box2">
+                    <div></div>
+                </div>
+                <div class="box3">
+                    <div></div>
+                </div>
+                <div class="cen"></div>
+            </div>
+        </div>
+        <div class="content3">
+            <div class="effect effect1">
+                <div class="ef1-border"></div>
+                <div class="ef1-bg"></div>
+                <div class="info">
+                    <h3>Heading here</h3>
+                    <p>Description goes here</p>
+                </div>
+            </div>
+            <div class="effect effect2">
+                <div class="ef2-img">
+                    <img src="./images/5.jpg" alt="">
+                </div>
+                <div class="info">
+                    <h3>Heading here</h3>
+                    <p>Description goes here</p>
+                </div>
+            </div>
+            <div class="effect effect3">
+                <div class="ef3-img">
+                    <img src="./images/6.jpg" alt="">
+                </div>
+                <div class="info">
+                    <h3>Heading here</h3>
+                    <p>Description goes here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

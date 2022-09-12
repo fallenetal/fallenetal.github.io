@@ -1,0 +1,75 @@
+.box_1 {
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 336px;
+  width: 100%;
+  background: url(bg1.png) no-repeat;
+  animation: bg 30s linear infinite;
+}
+
+.box_2 {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 569px;
+  width: 100%;
+  background: url(./bg2.png) no-repeat;
+  opacity: 0.1;
+  animation: bg 30s linear infinite;
+}
+
+.box_3 {
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 384px;
+  width: 100%;
+  background: url(./bg3.png) no-repeat;
+  opacity: 0.5;
+  animation: bg 30s linear infinite;
+}
+
+.bear {
+  z-index: 3;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 100px;
+  width: 200px;
+  background: url(./bear.png) no-repeat;
+  animation: bear 0.5s steps(8) infinite, move 6s forwards 0.2s;
+}
+
+@keyframes bear {
+  from {
+    background-position: 0, 0;
+  }
+
+  to {
+    background-position: -1600px, 0;
+  }
+}
+
+@keyframes move {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes bg {
+  from {
+    background-position: 0, 0;
+  }
+
+  to {
+    background-position: -1200px, 0;
+  }
+}
